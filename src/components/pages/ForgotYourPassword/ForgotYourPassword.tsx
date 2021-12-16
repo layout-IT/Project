@@ -7,6 +7,7 @@ import {FordotPasswordTC} from "../../../redux/forgot-your-password-reducer/forg
 import {NavLink, useNavigate} from "react-router-dom";
 
 export const ForgotYourPassword = () => {
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
     let status = useSelector<RootState, RequestStatusType>(state => state.login.status)
@@ -19,9 +20,6 @@ export const ForgotYourPassword = () => {
     const SendInstructions = () => {
         dispatch(FordotPasswordTC(Email, from, message))
         navigate('/check-email')
-        setTimeout(() => {
-            navigate('/login')
-        }, 2000)
     }
 
     return <div className={s.wrapper}>

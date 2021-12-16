@@ -16,7 +16,7 @@ export const PATH = {
     PROFILE: '/profile',
     REGISTRATION: '/registration',
     TEST: '/test',
-    NEW_PASSWORD: '/new-password',
+    NEW_PASSWORD: '/new-password/:token',
     LOGIN: '/login',
     FORGOT_MY_PASSWORD: '/forgot-my-password',
     NOT_FOUND: '/404',
@@ -37,7 +37,6 @@ function App() {
     return (
         <div className="App">
             <Routes>
-
                 <Route path={PATH.PROFILE} element={<Profile/>}/>
                 <Route path={PATH.LOGIN} element={<Login/>}/>
                 <Route path={PATH.REGISTRATION} element={<Registration/>}/>

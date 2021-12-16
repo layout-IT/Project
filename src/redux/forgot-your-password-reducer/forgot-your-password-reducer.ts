@@ -17,7 +17,12 @@ export const FordotPasswordTC =(email: string, from: string,message:string) => (
     dispatch(PreloaderStatus('loading'))
     return  Api.ForgotPassword(email,from,message)
         .then( (res) => {
-
+            console.log(res.data)
+            console.log(res.headers)
+            console.log(res.status)
+            console.log(res.statusText)
+            console.log(res.config)
+            console.log(res.request)
         })
         .catch((err) => {
 

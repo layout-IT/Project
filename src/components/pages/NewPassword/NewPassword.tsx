@@ -1,11 +1,14 @@
 import React, {ChangeEvent, useState} from "react";
 import s from './NewPassword.module.scss'
 import {useDispatch} from "react-redux";
+import { useParams } from "react-router-dom";
 
 export const NewPassword = () => {
+    const {token} = useParams()
+    console.log(token)
     const dispatch = useDispatch()
     let [newPassword,setNewPassword] = useState('')
-    const someToken = '121ewfwefew'
+
     const enteringANewPassword = (e:ChangeEvent<HTMLInputElement>) => {
         setNewPassword(e.currentTarget.value)
     }
