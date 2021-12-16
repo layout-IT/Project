@@ -7,7 +7,7 @@ type ActionTypes =
     | ReturnType<typeof OpenCloseEyeAC>
     | ReturnType<typeof PreloaderStatus>
     | ReturnType<typeof ErrorLogin>
-    | ReturnType<typeof ErrorLoginText>
+    | ReturnType<typeof ErrorTextFromResponse>
 
 export type RequestStatusType = 'loading' | 'succeeded'
 
@@ -16,7 +16,7 @@ export type initialStateType = {
     openCloseEye: boolean,
     status: RequestStatusType,
     errorLogin: boolean,
-    errorLoginText: string,
+    errorTextFromResponse: string,
 }
 
 
@@ -25,7 +25,7 @@ const initialState = {
     openCloseEye: false,
     status: 'succeeded',
     errorLogin: false,
-    errorLoginText: '',
+    errorTextFromResponse: '',
 } as initialStateType
 
 
@@ -40,8 +40,8 @@ export const loginReducer = (state: initialStateType = initialState, action: Act
             return {...state, status: action.status}
         case "ERROR-LOGIN":
             return {...state, errorLogin: action.errorLogin}
-        case "ERROR-LOGIN-Text":
-            return {...state, errorLoginText: action.errorLoginText}
+        case 'ERROR-Text-FROM-RESPONSE':
+            return {...state, errorTextFromResponse: action.errorTextFromResponse}
         default:
             return state
     }
@@ -82,10 +82,10 @@ export const ErrorLogin = (errorLogin: boolean) => {
     } as const
 }
 
-export const ErrorLoginText = (errorLoginText: string) => {
+export const ErrorTextFromResponse = (errorTextFromResponse: string) => {
     return {
-        type: 'ERROR-LOGIN-Text',
-        errorLoginText
+        type: 'ERROR-Text-FROM-RESPONSE',
+        errorTextFromResponse
     } as const
 }
 
@@ -100,8 +100,8 @@ export const LoginTC = (email: string, password: string, rememberMe: boolean) =>
         })
         .catch((err) => {
             dispatch(ErrorLogin(true))
-            const error = err.response ? err.response.data.error :  (err.message + ', more details in the console');
-            dispatch(ErrorLoginText(error))
+            const error = err.response ? err.response.data.error : (err.message + ', more details in the console');
+            dispatch(ErrorTextFromResponse(error))
         })
         .finally(() => {
             dispatch(PreloaderStatus('succeeded'))

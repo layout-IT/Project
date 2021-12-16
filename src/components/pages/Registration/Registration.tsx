@@ -16,7 +16,7 @@ export const Registration = () => {
     let registrationConfirmPasswordError = useSelector<RootState, boolean>(state => state.registration.registrationConfirmPasswordError)
     let registrationLengthPasswordError = useSelector<RootState, boolean>(state => state.registration.registrationLengthPasswordError)
     let errorEmailAlreadyExist = useSelector<RootState, boolean>(state => state.registration.errorEmailAlreadyExist)
-    let error = useSelector<RootState, string>(state => state.login.errorLoginText)
+    let errorTextFromResponse = useSelector<RootState, string>(state => state.login.errorTextFromResponse)
     let openCloseEye = useSelector<RootState, boolean>(state => state.login.openCloseEye)
 
     const dispatch = useDispatch()
@@ -34,8 +34,7 @@ export const Registration = () => {
         setconfirmPassword(e.currentTarget.value)
     }
     const navigate = useNavigate()
-    const click = () => {
-        console.log(error)
+    const clickOnRegister = () => {
         if (titlePassword === confirmPassword && titlePassword.length > 7) {
             dispatch(LogRegistrationTC(titleEmail, titlePassword))
         } else if (titlePassword.length <= 7) {
@@ -43,6 +42,10 @@ export const Registration = () => {
         } else if (titlePassword !== confirmPassword && titlePassword.length > 7) {
             dispatch(RegistrationConfirmPassworsError(true))
         }
+    }
+
+    const cancelClick = () => {
+        navigate('/login')
     }
 
     const ChangeErrorToFalse = () => {
@@ -60,7 +63,8 @@ export const Registration = () => {
             </div>
             <form action="#" className={s.stylesForTheform}>
                 <div className={s.emailFieldItems}>
-                    <label htmlFor="emailField">{errorEmailAlreadyExist ?error : 'Email'}</label>
+                    <label className={errorTextFromResponse && s.errorTextFromResponse}
+                           htmlFor="emailField">{errorEmailAlreadyExist ? errorTextFromResponse : 'Email'}</label>
                     <input onChange={createEmail} id={"emailField"} type="email" className={s.emailField}/>
                 </div>
                 <div className={s.passFieldItems}>
@@ -81,8 +85,8 @@ export const Registration = () => {
                 </div>
             </form>
             <div className={s.footer}>
-                <button className={s.registerCancelButton}>Cancel</button>
-                <button onClick={() => click()} className={s.registerCancelButton}>Register</button>
+                <button onClick={()=>cancelClick()} className={s.registerCancelButton}>Cancel</button>
+                <button onClick={() => clickOnRegister()} className={s.registerCancelButton}>Register</button>
             </div>
 
 

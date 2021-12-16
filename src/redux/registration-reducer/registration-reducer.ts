@@ -1,6 +1,6 @@
 import {Dispatch} from "redux";
 import {Api} from "../../api/Api";
-import {ErrorLogin, ErrorLoginText, IsLoginAC, PreloaderStatus, ProfileAC} from "../login-reducer/login-reducer";
+import {ErrorLogin, ErrorTextFromResponse, IsLoginAC, PreloaderStatus, ProfileAC} from "../login-reducer/login-reducer";
 
 type StateType = {
     isRegistered: boolean
@@ -13,7 +13,7 @@ const initialState: StateType = {
     isRegistered: false,
     registrationLengthPasswordError: false,
     registrationConfirmPasswordError: false,
-    errorEmailAlreadyExist:false,
+    errorEmailAlreadyExist: false,
 }
 
 export const registrationReducer = (state = initialState, action: ActionTypes): StateType => {
@@ -39,8 +39,8 @@ export const LogRegistrationTC = (email: string, password: string) => (dispatch:
 
         })
         .catch((err) => {
-            const error = err.response ? err.response.data.error :  (err.message + ', more details in the console');
-            dispatch(ErrorLoginText(error))
+            const error = err.response ? err.response.data.error : (err.message + ', more details in the console');
+            dispatch(ErrorTextFromResponse(error))
             dispatch(ErrorEmailAlreadyExistAC(true))
         })
         .finally(() => {

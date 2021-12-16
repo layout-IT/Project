@@ -21,7 +21,7 @@ export const Login = () => {
     let IsLogin = useSelector<RootState, boolean>(state => state.login.isLogin)
     let openCloseEye = useSelector<RootState, boolean>(state => state.login.openCloseEye)
     let errorLogin = useSelector<RootState, boolean>(state => state.login.errorLogin)
-    let errorLoginText = useSelector<RootState, string>(state => state.login.errorLoginText)
+    let errorLoginText = useSelector<RootState, string>(state => state.login.errorTextFromResponse)
     let [titleEmail, setTitleEmail] = useState('')
     let [titlePassword, setTitlePassword] = useState('')
     let [titleRememberMe, setTitleRememberMe] = useState(false)
@@ -38,7 +38,7 @@ export const Login = () => {
     const click = () => {
         dispatch(LoginTC(titleEmail, titlePassword, titleRememberMe))
     }
-   const funOpenCloseEye = () => {
+    const funOpenCloseEye = () => {
         !openCloseEye ? dispatch(OpenCloseEyeAC(true)) : dispatch(OpenCloseEyeAC(false))
     }
 
@@ -60,7 +60,7 @@ export const Login = () => {
                     <form action="#" className={s.stylesForTheform}>
                         <div className={s.emailFieldItems}>
                             <label className={errorLogin ? s.erorrLogin : ''}
-                                   htmlFor="emailField">{errorLogin ? 'Error'  : 'Email'}</label>
+                                   htmlFor="emailField">{errorLogin ? 'Error' : 'Email'}</label>
                             <input onClick={() => errorLogin && removeTheErrorFromTheLogin()} value={titleEmail}
                                    onChange={changeTitleEmail} id={"emailField"}
                                    type="email"
@@ -69,12 +69,12 @@ export const Login = () => {
 
                         <div className={s.passFieldItems}>
                             <label className={errorLogin ? s.erorrLogin : ''}
-                                   htmlFor="passField">{errorLogin ?errorLoginText : 'Password'}</label>
+                                   htmlFor="passField">{errorLogin ? errorLoginText : 'Password'}</label>
                             <input onClick={() => errorLogin && removeTheErrorFromTheLogin()} value={titlePassword}
                                    onChange={changeTitlePassword} id={"passField"}
                                    type={openCloseEye ? 'password' : 'text'}
                                    className={s.passField}/>
-                        <OpenCloseEye/>
+                            <OpenCloseEye/>
                         </div>
                         <div className={s.checkbox}><input onChange={changeCheckboxRememberMe}
                                                            type="checkbox"/> Remember Me
