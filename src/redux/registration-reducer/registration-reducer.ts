@@ -32,7 +32,7 @@ export const registrationReducer = (state = initialState, action: ActionTypes): 
 }
 
 export const LogRegistrationTC = (email: string, password: string) => (dispatch: Dispatch) => {
-    dispatch(PreloaderStatus('loading'))
+
     return Api.loginRegistration(email, password)
         .then((res) => {
             dispatch(LoginRegistrationAC(true))

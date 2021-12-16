@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-    baseURL: "http://localhost:7542/2.0/",
+    baseURL: "https://neko-back.herokuapp.com/2.0",
     withCredentials: true,
 })
 
@@ -17,6 +17,9 @@ export const Api = {
     },
     SetNewPassword(password:string){
         return instance.post<NewPasswordType>('auth/set-new-password',{password})
+    },
+    ForgotPassword(email: string, from: string,message:string){
+        return instance.post<NewPasswordType>('auth/forgot', {email,from,message})
     }
 }
 
@@ -43,4 +46,10 @@ export type NewPasswordType ={
 
 export type LoginRegistrationType ={
     error? : string
+}
+
+export type ForgotPasswordType ={
+    email:string
+    from : string
+    message : string
 }
