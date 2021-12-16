@@ -21,7 +21,6 @@ export const ForgotYourPassword = () => {
         dispatch(FordotPasswordTC(Email, from, message))
         navigate('/check-email')
     }
-
     return <div className={s.wrapper}>
         <div className={s.container}>
             <div className={s.title}>
