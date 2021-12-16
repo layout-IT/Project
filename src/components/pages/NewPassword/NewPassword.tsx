@@ -5,8 +5,8 @@ import { useParams } from "react-router-dom";
 
 export const NewPassword = () => {
     const {token} = useParams()
-    debugger
-    console.log(token)
+
+    //console.log(token)
     const dispatch = useDispatch()
     let [newPassword,setNewPassword] = useState('')
 
