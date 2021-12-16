@@ -6,16 +6,13 @@ import { useParams } from "react-router-dom";
 export const NewPassword = () => {
     const {token} = useParams()
 
-    console.log(token)
     const dispatch = useDispatch()
     let [newPassword,setNewPassword] = useState('')
 
     const enteringANewPassword = (e:ChangeEvent<HTMLInputElement>) => {
         setNewPassword(e.currentTarget.value)
     }
-    const click = () => {
-        dispatch(setNewPassword(newPassword))
-    }
+
     return <div className={s.wrapper}>
         <div className={s.container}>
             <div className={s.title}>
@@ -35,7 +32,7 @@ export const NewPassword = () => {
             </svg>
             <p className={s.instructions}>Create new password and we will send you futher instructions to email</p>
             <div className={s.footer}>
-                <button onClick={()=> click()} className={s.sendButton}>Create new password</button>
+                <button  className={s.sendButton}>Create new password</button>
 
             </div>
 
