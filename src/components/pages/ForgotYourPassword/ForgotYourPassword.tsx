@@ -19,6 +19,9 @@ export const ForgotYourPassword = () => {
     const SendInstructions = () => {
         dispatch(FordotPasswordTC(Email, from, message))
         navigate('/check-email')
+        setTimeout(() => {
+            navigate('/login')
+        },2000)
     }
 
     return <div className={s.wrapper}>
