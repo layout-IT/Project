@@ -1,0 +1,38 @@
+.default {
+
+}
+
+.button{
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #1878ED;
+    transition: 0.2s;
+}
+.button:disabled{
+    background-color: #f1f1f1;
+    color: #b4b4b4;
+    border: #bdbdbd solid 1px;
+    cursor: auto;
+}
+.button:hover{
+    background-color: #2e70c2;
+}
+
+
+.red {
+    background: #ED1729;
+}
+.red:hover{
+    background: #d52234;
+}
+
+.button:disabled:hover{
+    background-color: #f1f1f1;
+    color: #b4b4b4;
+    border: #bdbdbd solid 1px;
+    cursor: auto;
+}

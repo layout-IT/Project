@@ -1,0 +1,39 @@
+.superInput {
+
+}
+
+.errorInput {
+    border: 3px solid lime;
+    background: red;
+}
+
+.error {
+    color: #ED1729;
+}
+
+.input:focus{
+    outline: none;
+}
+.input{
+    padding: 4px 8px;
+    background-color: #efefef;
+    border: 1px solid #eaeaea;
+    border-radius: 4px;
+    transition: 0.2s ease;
+}
+.input:hover{
+    border: 1px solid #D1D1D1;
+}
+.input:focus{
+    border: 1px solid #1878ED;
+}
+.errorInput {
+    border: 1px solid #ED1729;
+    background-color: rgba(237, 23, 41, 0.2);
+}
+.errorInput:hover {
+    border: 1px solid #ED1729;
+}
+.errorInput:focus{
+    border: 1px solid #ED1729;
+}

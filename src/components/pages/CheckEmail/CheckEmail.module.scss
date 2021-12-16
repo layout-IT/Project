@@ -1,0 +1,172 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  border: 0px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+aside,
+nav,
+footer,
+header,
+section {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body {
+  // line-height: 1;
+  //text-rendering: optimizeLegibility;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  background: linear-gradient(180deg, #efdee8, #8979bd);
+}
+
+input,
+button,
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+//-webkit-overflow-scrolling: touch;
+//animation-play-state: paused !important;
+.wrapper {
+  width: 400px;
+  height: 100%;
+  max-height: 90%;
+  background-color: white;
+  padding: 40px 30px 150px 30px;
+  border-radius: 15px;
+  overflow: hidden;
+  @media (max-width: 1500px) {
+    padding: 40px 30px 120px 30px;
+    width: 350px;
+  }
+  @media (max-width: 900px) {
+    padding: 20px 30px 40px 30px;
+    width: 250px;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+margin-bottom: 10px;
+}
+
+h1 {
+  font-family: Bahnschrift;
+  font-size: 30px;
+  font-weight: 700;
+  @media (max-width: 1500px) {
+    font-size: 25px;
+  }
+  @media (max-width: 900px) {
+    font-size: 20px;
+  }
+
+}
+
+.containerSvg{
+  margin:  0 auto;
+  margin-bottom: 30px;
+}
+
+.roundSvg{
+  width: 110px;
+  height: 110px;
+  background-color:#D7D8EF ;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.svg{
+  width: 60px;
+  color: #21268F;
+}
+h3 {
+  font-family: Bahnschrift;
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  @media (max-width: 1500px) {
+    font-size: 22px;
+  }
+  @media (max-width: 900px) {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+}
+
+.footerText{
+  color: #a5a5a5;
+  @media (max-width: 900px) {
+    font-size: 14px;
+  }
+}
