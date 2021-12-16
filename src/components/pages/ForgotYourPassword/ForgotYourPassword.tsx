@@ -16,7 +16,7 @@ export const ForgotYourPassword = () => {
         setEmail(e.currentTarget.value)
     }
     const SendInstructions = () => {
-        dispatch(FordotPasswordTC(Email,from,message))
+        dispatch(FordotPasswordTC(Email, from, message))
     }
 
     return <div className={s.wrapper}>
@@ -27,13 +27,14 @@ export const ForgotYourPassword = () => {
             </div>
             <form action="#" className={s.stylesForTheform}>
                 <div className={s.emailFieldItems}>
-                    <input onChange={EmailForgotPassword} id={"emailField"} type="email" className={s.emailField} placeholder={'Email'}/>
+                    <input onChange={EmailForgotPassword} id={"emailField"} type="email" className={s.emailField}
+                           placeholder={'Email'}/>
                 </div>
             </form>
             <p className={s.instructions}>Enter your email address and we will send you further instructions</p>
             <div className={s.footer}>
-                <button onClick={()=> SendInstructions()} className={s.sendButton}>Send Instructions</button>
-                <div  className={s.passwordQuestion}>Did you remember your password?</div>
+                <button onClick={() => SendInstructions()} className={s.sendButton}>Send Instructions</button>
+                <div className={s.passwordQuestion}>Did you remember your password?</div>
                 <NavLink to={'/login'} className={s.tryLogging}>Try logging in</NavLink>
             </div>
         </div>
