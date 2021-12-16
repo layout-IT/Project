@@ -2,6 +2,7 @@ import React, {ChangeEvent, useState} from "react";
 import s from './Registration.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {
+    ErrorEmailAlreadyExistAC,
     LoginRegistrationAC,
     LogRegistrationTC,
     RegistrationConfirmPassworsError, RegistrationLengthPasswordErrorAC
@@ -51,6 +52,7 @@ export const Registration = () => {
     const ChangeErrorToFalse = () => {
         dispatch(RegistrationConfirmPassworsError(false))
         dispatch(RegistrationLengthPasswordErrorAC(false))
+        dispatch(ErrorEmailAlreadyExistAC(false))
     }
     if (isRegistered) {
         return <Navigate to={'/login'}/>
@@ -63,9 +65,9 @@ export const Registration = () => {
             </div>
             <form action="#" className={s.stylesForTheform}>
                 <div className={s.emailFieldItems}>
-                    <label className={errorTextFromResponse && s.errorTextFromResponse}
+                    <label className={errorEmailAlreadyExist ? s.errorTextFromResponse :''}
                            htmlFor="emailField">{errorEmailAlreadyExist ? errorTextFromResponse : 'Email'}</label>
-                    <input onChange={createEmail} id={"emailField"} type="email" className={s.emailField}/>
+                    <input onClick={()=> ChangeErrorToFalse()} onChange={createEmail} id={"emailField"} type="email" className={s.emailField}/>
                 </div>
                 <div className={s.passFieldItems}>
                     <label
