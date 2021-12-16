@@ -21,7 +21,7 @@ export const ForgotYourPassword = () => {
         navigate('/check-email')
         setTimeout(() => {
             navigate('/login')
-        },2000)
+        }, 2000)
     }
 
     return <div className={s.wrapper}>
