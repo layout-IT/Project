@@ -17,7 +17,7 @@ export const Login = () => {
     // }
     const dispatch = useDispatch()
 
-    let status = useSelector<RootState, RequestStatusType>(state => state.login.status)
+    let status = useSelector<RootState, string>(state => state.login.status)
     let IsLogin = useSelector<RootState, boolean>(state => state.login.isLogin)
     let openCloseEye = useSelector<RootState, boolean>(state => state.login.openCloseEye)
     let errorLogin = useSelector<RootState, boolean>(state => state.login.errorLogin)

@@ -11,13 +11,7 @@ type ActionTypes =
 
 export type RequestStatusType = 'loading' | 'succeeded'
 
-export type initialStateType = {
-    isLogin: boolean,
-    openCloseEye: boolean,
-    status: RequestStatusType,
-    errorLogin: boolean,
-    errorTextFromResponse: string,
-}
+export type initialStateType = typeof initialState
 
 
 const initialState = {
@@ -26,14 +20,16 @@ const initialState = {
     status: 'succeeded',
     errorLogin: false,
     errorTextFromResponse: '',
-} as initialStateType
+}
 
 
 export const loginReducer = (state: initialStateType = initialState, action: ActionTypes): initialStateType => {
 
     switch (action.type) {
         case "IS-LOGIN":
-            return {...state, isLogin: action.isLogin}
+            let a = {...state, isLogin: action.isLogin}
+            debugger
+            return a
         case "OPEN-CLOSE-EYE":
             return {...state, openCloseEye: action.openCloseEye}
         case "PRELOADER-STATUS":

@@ -13,16 +13,17 @@ export const ForgotYourPassword = () => {
     let IsLogin = useSelector<RootState, boolean>(state => state.login.isLogin)
     let [Email, setEmail] = useState('')
     let [from, setFrom] = useState('test-front-admin <cbu3ucm@mail.ru>')
-    let [message, setMessage] = useState(`<div style="background-color: lime; padding: 15px"> password recovery link:<a href='https://layout-it.github.io/Project/#/new-password/$token$'>link</a></div>`)
+    let [message, setMessage] = useState(`<div style="background-color: lime; padding: 15px"> password recovery link:<a href='http://localhost:3000/#/new-password/$token$'>link</a></div>`)
     const EmailForgotPassword = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.currentTarget.value)
     }
     const SendInstructions = () => {
         dispatch(FordotPasswordTC(Email, from, message))
-        console.log(IsLogin)
+       debugger
         dispatch(IsLoginAC(true))
         navigate('/check-email')
         console.log(IsLogin)
+
     }
     return <div className={s.wrapper}>
         <div className={s.container}>

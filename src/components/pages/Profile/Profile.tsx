@@ -10,7 +10,7 @@ function Profile() {
     const dispatch = useDispatch()
     const avatar = useSelector<RootState, string | undefined>(state => state.profile.avatar)
     const name = useSelector<RootState, string | undefined>(state => state.profile.name)
-    let status = useSelector<RootState, RequestStatusType>(state => state.login.status)
+    let status = useSelector<RootState, string>(state => state.login.status)
     let IsLogin = useSelector<RootState, boolean>(state => state.login.isLogin)
     if (!IsLogin) {
         return <Navigate to={'/login'}/>
