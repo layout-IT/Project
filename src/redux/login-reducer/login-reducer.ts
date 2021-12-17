@@ -111,9 +111,6 @@ export const LogOutTC = () => (dispatch: Dispatch) => {
         .then((res) => {
             dispatch(IsLoginAC(false))
         })
-        .catch((err) => {
-
-        })
         .finally(() => {
             dispatch(PreloaderStatus('succeeded'))
         })

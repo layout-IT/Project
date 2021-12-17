@@ -16,11 +16,10 @@ function Profile() {
     const LogOut = () => {
         dispatch(LogOutTC())
     }
-    useEffect(() => {
         if (!IsLogin) {
             navigate('/login')
         }
-    }, [])
+
     return <>
         {status === "loading" ? <Preloader/>
             : <div>
