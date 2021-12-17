@@ -20,10 +20,21 @@ export const ForgotYourPassword = () => {
         return '`<div style="background-color: lime; padding: 15px"> password recovery link:<a href=\'https://layout-it.github.io/Project#/new-password/$token$\'>link</a></div>`'
     }
     let [message, setMessage] = useState(letterToEmail)
+    let [validEmail, setValidEmail] = useState('')
+    const removeValidationFieldError = () => {
+        setValidEmail('')
+    }
     const SendInstructions = () => {
-        dispatch(FordotPasswordTC(Email, from, message))
-        dispatch(IsLoginAC(true))
-        navigate('/check-email')
+        if (Email.length <= 1) {
+            setValidEmail('Invalid email address')
+        } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(Email)) {
+            setValidEmail( 'Invalid email address')
+        }else{
+            dispatch(FordotPasswordTC(Email, from, message))
+            dispatch(IsLoginAC(true))
+            navigate('/check-email')
+        }
+
     }
     return <>
         {status === "loading" ? <Preloader/>
@@ -37,13 +48,14 @@ export const ForgotYourPassword = () => {
                         <div className={s.emailFieldItems}>
                             <input onChange={EmailForgotPassword} id={"emailField"} type="email"
                                    className={s.emailField}
-                                   placeholder={'Email'}/>
+                                   placeholder={'Email'}
+                            onClick={()=>removeValidationFieldError() }/>
                         </div>
                     </form>
-                    <p className={s.instructions}>Enter your email address and we will send you further instructions</p>
+                    <p className={validEmail.length > 1 ? s.red : s.instructions}>{validEmail.length > 1 ? validEmail : 'Enter your email address and we will send you further instructions'}</p>
                     <div className={s.footer}>
                         <button onClick={() => SendInstructions()} className={s.sendButton}>Send Instructions</button>
-                        <div className={s.passwordQuestion}>Did you remember your password?</div>
+                        <div className={s.passwordQuestion}>Have you already registered?</div>
                         <NavLink to={'/login'} className={s.tryLogging}>Try logging in</NavLink>
                     </div>
                 </div>
