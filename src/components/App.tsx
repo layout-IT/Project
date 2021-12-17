@@ -35,7 +35,8 @@ function App() {
                 <Route path={PATH.FORGOT_MY_PASSWORD} element={<ForgotYourPassword/>}/>
                 <Route path={PATH.SUCCESS_CHANGE_PASSWORD} element={<PasswordChangeSsuccessful/>}/>
                 <Route path={PATH.CHECK_EMAIL} element={<CheckEmail/>}/>
-                <Route path='*' element={<NotFound/>}/>
+                <Route path='*' element={<Login/>}/>
+                {/*<Route path='*' element={<NotFound/>}/>*/}
             </Routes>
         </div>
     );
