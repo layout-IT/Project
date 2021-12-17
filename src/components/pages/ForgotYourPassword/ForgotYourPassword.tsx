@@ -13,7 +13,7 @@ export const ForgotYourPassword = () => {
     let status = useSelector<RootState, RequestStatusType>(state => state.login.status)
     let [Email, setEmail] = useState('')
     let [from, setFrom] = useState('test-front-admin <cbu3ucm@mail.ru>')
-    let [message, setMessage] = useState(`<div style="background-color: lime; padding: 15px"> password recovery link:<a href='http://localhost:3000/#/new-password/$token$'>link</a></div>`)
+    let [message, setMessage] = useState(`<div style="background-color: lime; padding: 15px"> password recovery link:<a href='https://layout-it.github.io/#/new-password/$token$'>link</a></div>`)
     const EmailForgotPassword = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.currentTarget.value)
     }
