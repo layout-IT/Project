@@ -32,10 +32,10 @@ export const NewPassword = () => {
             dispatch(RegistrationLengthPasswordErrorAC(true))
         } else {
             dispatch(setNewPasswordTC(newPassword, token as string))
-            if (successfulPasswordReplacement) {
-                navigate('/success-change-password')
-            }
         }
+    }
+    if (successfulPasswordReplacement) {
+        navigate('/success-change-password')
     }
     const ChangeErrorToFalse = () => {
         dispatch(RegistrationLengthPasswordErrorAC(false))
