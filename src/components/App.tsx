@@ -22,10 +22,7 @@ export const PATH = {
     NOT_FOUND: '/404',
     CHECK_EMAIL: '/check-email'
 }
-
-
 function App() {
-
     return (
         <div className="App">
             <Routes>
