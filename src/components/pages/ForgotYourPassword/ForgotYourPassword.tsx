@@ -19,6 +19,7 @@ export const ForgotYourPassword = () => {
     }
     const SendInstructions = () => {
         dispatch(FordotPasswordTC(Email, from, message))
+        console.log(IsLogin)
         dispatch(IsLoginAC(true))
         navigate('/check-email')
         console.log(IsLogin)
