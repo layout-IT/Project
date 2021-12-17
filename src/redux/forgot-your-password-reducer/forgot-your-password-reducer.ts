@@ -13,10 +13,10 @@ export const forgotYourPasswordReducer = (state = initialState, action: ActionTy
     }
 }
 
-export const FordotPasswordTC =(email: string, from: string,message:string) => (dispatch: Dispatch) => {
+export const FordotPasswordTC = (email: string, from: string, message: string) => (dispatch: Dispatch) => {
     dispatch(PreloaderStatus('loading'))
-    return  Api.ForgotPassword(email,from,message)
-        .then( (res) => {
+    return Api.ForgotPassword(email, from, message)
+        .then((res) => {
 
         })
         .catch((err) => {

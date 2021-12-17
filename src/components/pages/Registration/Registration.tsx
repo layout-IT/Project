@@ -54,6 +54,7 @@ export const Registration = () => {
         dispatch(RegistrationLengthPasswordErrorAC(false))
         dispatch(ErrorEmailAlreadyExistAC(false))
     }
+
     if (isRegistered) {
         return <Navigate to={'/login'}/>
     }

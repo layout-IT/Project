@@ -12,9 +12,9 @@ export const newPasswordReducer = (state = initialState, action: ActionTypes): S
             return state
     }
 }
-export const setNewPasswordTC = (password: string,resetPasswordToken:string) => (dispatch: Dispatch) => {
+export const setNewPasswordTC = (password: string, resetPasswordToken: string) => (dispatch: Dispatch) => {
     dispatch(PreloaderStatus('loading'))
-    return Api.SetNewPassword(password,resetPasswordToken)
+    return Api.SetNewPassword(password, resetPasswordToken)
         .then((res) => {
         })
         .catch((err) => {

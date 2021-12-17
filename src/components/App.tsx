@@ -25,20 +25,12 @@ export const PATH = {
 
 
 function App() {
-    const navigate = useNavigate()
-    let IsLogin = useSelector<RootState, boolean>(state => state.login.isLogin)
-
-    useEffect(() => {
-        if (!IsLogin) {
-            navigate('/login')
-        }
-    }, [])
 
     return (
         <div className="App">
             <Routes>
-                <Route path={PATH.PROFILE} element={<Profile/>}/>
                 <Route path={PATH.LOGIN} element={<Login/>}/>
+                <Route path={PATH.PROFILE} element={<Profile/>}/>
                 <Route path={PATH.REGISTRATION} element={<Registration/>}/>
                 <Route path={PATH.NEW_PASSWORD} element={<NewPassword/>}/>
                 <Route path={PATH.FORGOT_MY_PASSWORD} element={<ForgotYourPassword/>}/>
