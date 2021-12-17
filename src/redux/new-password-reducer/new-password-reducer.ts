@@ -12,14 +12,12 @@ export const newPasswordReducer = (state = initialState, action: ActionTypes): S
             return state
     }
 }
-export const setNewPassword = (password: string) => (dispatch: Dispatch) => {
+export const setNewPasswordTC = (password: string,resetPasswordToken:string) => (dispatch: Dispatch) => {
     dispatch(PreloaderStatus('loading'))
-    return Api.SetNewPassword(password)
+    return Api.SetNewPassword(password,resetPasswordToken)
         .then((res) => {
-            console.log(res)            //Запрос не верный
         })
         .catch((err) => {
-            console.log(err)
         })
         .finally(() => {
             dispatch(PreloaderStatus('succeeded'))

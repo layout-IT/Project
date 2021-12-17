@@ -1,18 +1,21 @@
 import React, {ChangeEvent, useState} from "react";
 import s from './NewPassword.module.scss'
 import {useDispatch} from "react-redux";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
+import {setNewPasswordTC} from "../../../redux/new-password-reducer/new-password-reducer";
 
 export const NewPassword = () => {
     const {token} = useParams()
 
     const dispatch = useDispatch()
-    let [newPassword,setNewPassword] = useState('')
+    let [newPassword, setNewPassword] = useState('')
 
-    const enteringANewPassword = (e:ChangeEvent<HTMLInputElement>) => {
+    const enteringANewPassword = (e: ChangeEvent<HTMLInputElement>) => {
         setNewPassword(e.currentTarget.value)
     }
-
+    const getANewPassword = () => {
+dispatch(setNewPasswordTC(newPassword,token as string))
+    }
     return <div className={s.wrapper}>
         <div className={s.container}>
             <div className={s.title}>
@@ -21,7 +24,8 @@ export const NewPassword = () => {
             </div>
             <form action="#" className={s.stylesForTheform}>
                 <div className={s.emailFieldItems}>
-                    <input onChange={enteringANewPassword} id={"emailField"} type="password" className={s.emailField} placeholder={'Password'}/>
+                    <input onChange={enteringANewPassword} id={"emailField"} type="password" className={s.emailField}
+                           placeholder={'Password'}/>
                 </div>
             </form>
             <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="eye" role="img"
@@ -32,7 +36,7 @@ export const NewPassword = () => {
             </svg>
             <p className={s.instructions}>Create new password and we will send you futher instructions to email</p>
             <div className={s.footer}>
-                <button  className={s.sendButton}>Create new password</button>
+                <button onClick={() => getANewPassword()} className={s.sendButton}>Create new password</button>
 
             </div>
 

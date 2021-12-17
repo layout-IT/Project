@@ -15,8 +15,8 @@ export const Api = {
     loginRegistration<LoginRegistrationType>(email: string, password: string){
         return instance.post('auth/register', {email, password})
     },
-    SetNewPassword(password:string){
-        return instance.post<NewPasswordType>('auth/set-new-password',{password})
+    SetNewPassword(password:string,resetPasswordToken:string){
+        return instance.post<NewPasswordType>('auth/set-new-password',{password,resetPasswordToken})
     },
     ForgotPassword(email: string, from: string,message:string){
         return instance.post<NewPasswordType>('auth/forgot', {email,from,message})
