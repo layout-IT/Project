@@ -1,7 +1,6 @@
 import {ProfileAC} from "../login-reducer/login-reducer";
 import {ResponsType} from "../../api/Api";
 
-
 export type initialStateType = ResponsType & {}
 
 const initialState = {} as initialStateType
@@ -14,7 +13,6 @@ export const profileReducer = (state = initialState, action: ActionTypes): initi
             return state
     }
 }
-
 
 type ActionTypes =
     | ReturnType<typeof ProfileAC>

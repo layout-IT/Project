@@ -24,6 +24,7 @@ export const PATH = {
     SUCCESS_CHANGE_PASSWORD: '/success-change-password',
     CHECK_EMAIL: '/check-email'
 }
+
 function App() {
     return (
         <div className="App">

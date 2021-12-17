@@ -5,7 +5,6 @@ import SuperInputText from "../../common/SuperInputText/SuperInputText";
 import SuperCheckbox from "../../common/SuperCheckbox/SuperCheckbox";
 
 export const TestPage = () => {
-
     const [text, setText] = useState<string>('')
     const error = text ? '' : 'Error'
 
@@ -16,12 +15,8 @@ export const TestPage = () => {
             alert(text) // если нет ошибки показать текст
         }
     }
-
     const [checked, setChecked] = useState<boolean>(false)
     const testOnChange = (e: ChangeEvent<HTMLInputElement>) => setChecked(e.currentTarget.checked)
-
-
-
     return (
         <>
             <h1>Test Page</h1>

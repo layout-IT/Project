@@ -4,14 +4,14 @@ import {PreloaderStatus} from "../login-reducer/login-reducer";
 
 export type StateType = typeof initialState
 
-const initialState= {
-    successfulPasswordReplacement : false
+const initialState = {
+    successfulPasswordReplacement: false
 }
 
 export const newPasswordReducer = (state = initialState, action: ActionTypes): StateType => {
     switch (action.type) {
         case "INFO-SUCCESSFUL-PASSWORD-REPLACEMENT":
-            return {...state, successfulPasswordReplacement : action.successfulPasswordReplacement }
+            return {...state, successfulPasswordReplacement: action.successfulPasswordReplacement}
         default:
             return state
     }
@@ -32,7 +32,7 @@ export const SuccessfulPasswordReplacementAC = (successfulPasswordReplacement: b
     return {
         type: 'INFO-SUCCESSFUL-PASSWORD-REPLACEMENT',
         successfulPasswordReplacement
-    }as const
+    } as const
 }
 
 type ActionTypes =

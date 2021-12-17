@@ -39,8 +39,7 @@ export const Login = () => {
         !openCloseEye ? dispatch(OpenCloseEyeAC(true)) : dispatch(OpenCloseEyeAC(false))
     }
     if (IsLogin) {
-
-        return <Navigate to={"/profile"}/>
+        return <Navigate to={"/"}/>
     }
     const removeTheErrorFromTheLogin = () => {
         dispatch(ErrorLogin(false))

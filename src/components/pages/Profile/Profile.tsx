@@ -16,12 +16,9 @@ function Profile() {
     const LogOut = () => {
         dispatch(LogOutTC())
     }
-
     if (!IsLogin) {
-        console.log('redirect')
-        return <Navigate to='/login' />
+        return <Navigate to='/login'/>
     }
-
     return <>
         {status === "loading" ? <Preloader/>
             : <div>

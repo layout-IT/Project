@@ -1,7 +1,6 @@
 import {Dispatch} from "redux"
 import {Api, ResponsType} from "../../api/Api";
 
-
 type ActionTypes =
     | ReturnType<typeof IsLoginAC>
     | ReturnType<typeof OpenCloseEyeAC>
@@ -13,7 +12,6 @@ export type RequestStatusType = 'loading' | 'succeeded'
 
 export type initialStateType = typeof initialState
 
-
 const initialState = {
     isLogin: false,
     openCloseEye: false,
@@ -22,14 +20,10 @@ const initialState = {
     errorTextFromResponse: '',
 }
 
-
 export const loginReducer = (state: initialStateType = initialState, action: ActionTypes): initialStateType => {
-
     switch (action.type) {
         case "IS-LOGIN":
-            let a = {...state, isLogin: action.isLogin}
-            debugger
-            return a
+            return {...state, isLogin: action.isLogin}
         case "OPEN-CLOSE-EYE":
             return {...state, openCloseEye: action.openCloseEye}
         case "PRELOADER-STATUS":
@@ -85,7 +79,6 @@ export const ErrorTextFromResponse = (errorTextFromResponse: string) => {
     } as const
 }
 
-
 export const LoginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
     dispatch(PreloaderStatus('loading'))
 
@@ -103,7 +96,6 @@ export const LoginTC = (email: string, password: string, rememberMe: boolean) =>
             dispatch(PreloaderStatus('succeeded'))
         })
 }
-
 
 export const LogOutTC = () => (dispatch: Dispatch) => {
     dispatch(PreloaderStatus('loading'))

@@ -224,7 +224,8 @@ label {
   color: black;
   margin-bottom: 70px;
   transition: all 0.3s ease;
-display: block;
+  display: block;
+
   &:hover {
     color: #21268F;
   }
@@ -298,7 +299,7 @@ display: block;
   }
 }
 
-.erorrLogin{
-  color : red;
+.erorrLogin {
+  color: red;
   font-weight: 600;
 }
