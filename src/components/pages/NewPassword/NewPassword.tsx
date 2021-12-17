@@ -1,12 +1,14 @@
 import React, {ChangeEvent, useState} from "react";
 import s from './NewPassword.module.scss'
-import {useDispatch} from "react-redux";
-import {useParams} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {useNavigate, useParams} from "react-router-dom";
 import {setNewPasswordTC} from "../../../redux/new-password-reducer/new-password-reducer";
+import {RootState} from "../../../redux/store";
+import {IsLoginAC} from "../../../redux/login-reducer/login-reducer";
 
 export const NewPassword = () => {
     const {token} = useParams()
-
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     let [newPassword, setNewPassword] = useState('')
 
@@ -14,7 +16,9 @@ export const NewPassword = () => {
         setNewPassword(e.currentTarget.value)
     }
     const getANewPassword = () => {
-dispatch(setNewPasswordTC(newPassword,token as string))
+        dispatch(setNewPasswordTC(newPassword, token as string))
+        dispatch(IsLoginAC(false))
+        navigate('/login')
     }
     return <div className={s.wrapper}>
         <div className={s.container}>

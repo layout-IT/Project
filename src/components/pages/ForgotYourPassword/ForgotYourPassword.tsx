@@ -2,7 +2,7 @@ import React, {ChangeEvent, useEffect, useState} from "react";
 import s from './ForgotYourPassword.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
-import {RequestStatusType} from "../../../redux/login-reducer/login-reducer";
+import {IsLoginAC, RequestStatusType} from "../../../redux/login-reducer/login-reducer";
 import {FordotPasswordTC} from "../../../redux/forgot-your-password-reducer/forgot-your-password-reducer";
 import {NavLink, useNavigate} from "react-router-dom";
 
@@ -19,6 +19,7 @@ export const ForgotYourPassword = () => {
     }
     const SendInstructions = () => {
         dispatch(FordotPasswordTC(Email, from, message))
+        dispatch(IsLoginAC(true))
         navigate('/check-email')
     }
     return <div className={s.wrapper}>
