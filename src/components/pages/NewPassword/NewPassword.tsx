@@ -2,21 +2,23 @@ import React, {ChangeEvent, useState} from "react";
 import s from './NewPassword.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useParams} from "react-router-dom";
-import {setNewPasswordTC} from "../../../redux/new-password-reducer/new-password-reducer";
+import {
+    setNewPasswordTC,
+    SuccessfulPasswordReplacementAC
+} from "../../../redux/new-password-reducer/new-password-reducer";
 import {RootState} from "../../../redux/store";
 import {IsLoginAC} from "../../../redux/login-reducer/login-reducer";
 import OpenCloseEye from "../../features/isOpenEye/OpenCloseEye";
 import Preloader from "../../features/Preloader/Preloader";
 import {
-    ErrorEmailAlreadyExistAC,
-    RegistrationConfirmPassworsError,
     RegistrationLengthPasswordErrorAC
 } from "../../../redux/registration-reducer/registration-reducer";
+import PasswordChangeSsuccessful from "../../features/PasswordChangeSuccessfil/PasswordChangeSsuccessful";
 
 export const NewPassword = () => {
     let registrationLengthPasswordError = useSelector<RootState, boolean>(state => state.registration.registrationLengthPasswordError)
     let openCloseEye = useSelector<RootState, boolean>(state => state.login.openCloseEye)
-    let infoAboutSuccessfulPasswordReplacement = useSelector<RootState, string>(state => state.newPassword.infoAboutSuccessfulPasswordReplacement)
+    let successfulPasswordReplacement = useSelector<RootState, boolean>(state => state.newPassword.successfulPasswordReplacement)
     const {token} = useParams()
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -30,10 +32,9 @@ export const NewPassword = () => {
             dispatch(RegistrationLengthPasswordErrorAC(true))
         } else {
             dispatch(setNewPasswordTC(newPassword, token as string))
-            console.log(infoAboutSuccessfulPasswordReplacement.length )
-            setTimeout(() => {
-                navigate('/login')
-            }, 4000)
+            if (successfulPasswordReplacement) {
+                navigate('/success-change-password')
+            }
         }
     }
     const ChangeErrorToFalse = () => {
@@ -57,10 +58,11 @@ export const NewPassword = () => {
                             <OpenCloseEye/>
                         </div>
                     </form>
-                    <p className={registrationLengthPasswordError? s.redError: (infoAboutSuccessfulPasswordReplacement.length > 0 ? s.greenText  :s.instructions)}>{registrationLengthPasswordError ? 'The password must have more than 7 characters!' :
-                        (infoAboutSuccessfulPasswordReplacement.length > 0 ? 'Password change was successful' : 'Create new password and we will send you futher instructions to email') }</p>
+                    <p className={registrationLengthPasswordError ? s.redError : s.instructions}>
+                        {registrationLengthPasswordError ? 'The password must have more than 7 characters!' : 'Create new password and we will send you futher instructions to email'}</p>
                     <div className={s.footer}>
-                        <button onClick={() => getANewPassword()} className={s.sendButton}>Create new password</button>
+                        <button onClick={() => getANewPassword()} className={s.sendButton}>Create new password
+                        </button>
                     </div>
                 </div>
             </div>

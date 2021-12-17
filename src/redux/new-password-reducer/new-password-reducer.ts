@@ -5,13 +5,13 @@ import {PreloaderStatus} from "../login-reducer/login-reducer";
 export type StateType = typeof initialState
 
 const initialState= {
-    infoAboutSuccessfulPasswordReplacement : ''
+    successfulPasswordReplacement : false
 }
 
 export const newPasswordReducer = (state = initialState, action: ActionTypes): StateType => {
     switch (action.type) {
-        case "SUCCESSFUL-PASSWORD-REPLACEMENT":
-            return {...state, infoAboutSuccessfulPasswordReplacement : action.infoAboutSuccessfulPasswordReplacement }
+        case "INFO-SUCCESSFUL-PASSWORD-REPLACEMENT":
+            return {...state, successfulPasswordReplacement : action.successfulPasswordReplacement }
         default:
             return state
     }
@@ -20,7 +20,7 @@ export const setNewPasswordTC = (password: string, resetPasswordToken: string) =
     dispatch(PreloaderStatus('loading'))
     return Api.SetNewPassword(password, resetPasswordToken)
         .then((res) => {
-            dispatch(SuccessfulPasswordReplacementAC(res.data.info))
+            dispatch(SuccessfulPasswordReplacementAC(true))
         })
         .catch((err) => {
         })
@@ -28,11 +28,12 @@ export const setNewPasswordTC = (password: string, resetPasswordToken: string) =
             dispatch(PreloaderStatus('succeeded'))
         })
 }
-const SuccessfulPasswordReplacementAC = (infoAboutSuccessfulPasswordReplacement: string) => {
+export const SuccessfulPasswordReplacementAC = (successfulPasswordReplacement: boolean) => {
     return {
-        type: 'SUCCESSFUL-PASSWORD-REPLACEMENT',
-        infoAboutSuccessfulPasswordReplacement
+        type: 'INFO-SUCCESSFUL-PASSWORD-REPLACEMENT',
+        successfulPasswordReplacement
     }as const
 }
+
 type ActionTypes =
     | ReturnType<typeof SuccessfulPasswordReplacementAC>

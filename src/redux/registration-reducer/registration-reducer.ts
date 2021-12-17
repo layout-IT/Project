@@ -2,14 +2,9 @@ import {Dispatch} from "redux";
 import {Api} from "../../api/Api";
 import {ErrorLogin, ErrorTextFromResponse, IsLoginAC, PreloaderStatus, ProfileAC} from "../login-reducer/login-reducer";
 
-type StateType = {
-    isRegistered: boolean
-    registrationConfirmPasswordError: boolean
-    registrationLengthPasswordError: boolean
-    errorEmailAlreadyExist: boolean
-}
+type StateType = typeof initialState
 
-const initialState: StateType = {
+const initialState = {
     isRegistered: false,
     registrationLengthPasswordError: false,
     registrationConfirmPasswordError: false,
