@@ -11,6 +11,7 @@ import {RootState} from "../../../redux/store";
 import {OpenCloseEyeAC, RequestStatusType} from "../../../redux/login-reducer/login-reducer";
 import {Navigate, NavLink, useNavigate} from "react-router-dom";
 import OpenCloseEye from "../../features/isOpenEye/OpenCloseEye";
+import Preloader from "../../features/Preloader/Preloader";
 
 export const Registration = () => {
     let isRegistered = useSelector<RootState, boolean>(state => state.registration.isRegistered)
@@ -19,7 +20,7 @@ export const Registration = () => {
     let errorEmailAlreadyExist = useSelector<RootState, boolean>(state => state.registration.errorEmailAlreadyExist)
     let errorTextFromResponse = useSelector<RootState, string>(state => state.login.errorTextFromResponse)
     let openCloseEye = useSelector<RootState, boolean>(state => state.login.openCloseEye)
-
+    let status = useSelector<RootState, string>(state => state.login.status)
     const dispatch = useDispatch()
     let [titleEmail, setTitleEmail] = useState('')
     let [titlePassword, setTitlePassword] = useState('')
@@ -44,57 +45,58 @@ export const Registration = () => {
             dispatch(RegistrationConfirmPassworsError(true))
         }
     }
-
     const cancelClick = () => {
         navigate('/login')
     }
-
     const ChangeErrorToFalse = () => {
         dispatch(RegistrationConfirmPassworsError(false))
         dispatch(RegistrationLengthPasswordErrorAC(false))
         dispatch(ErrorEmailAlreadyExistAC(false))
     }
-
     if (isRegistered) {
         return <Navigate to={'/login'}/>
     }
-    return <div className={s.wrapper}>
-        <div className={s.container}>
-            <div className={s.title}>
-                <h1> It-Incubator</h1>
-                <h3>Sign Up</h3>
+    return <>
+        {status === "loading" ? <Preloader/>
+            : <div className={s.wrapper}>
+                <div className={s.container}>
+                    <div className={s.title}>
+                        <h1> It-Incubator</h1>
+                        <h3>Sign Up</h3>
+                    </div>
+                    <form action="#" className={s.stylesForTheform}>
+                        <div className={s.emailFieldItems}>
+                            <label className={errorEmailAlreadyExist ? s.errorTextFromResponse : ''}
+                                   htmlFor="emailField">{errorEmailAlreadyExist ? errorTextFromResponse : 'Email'}</label>
+                            <input onClick={() => ChangeErrorToFalse()} onChange={createEmail} id={"emailField"}
+                                   type="email" className={s.emailField}/>
+                        </div>
+                        <div className={s.passFieldItems}>
+                            <label
+                                className={registrationLengthPasswordError ? s.registrationConfirmPasswordError : ''}
+                                htmlFor="passField">{registrationConfirmPasswordError ? "Password" : (registrationLengthPasswordError ? 'The password must be more than 7 characters' : "Password")}</label>
+                            <input onClick={() => ChangeErrorToFalse()} onChange={createPassword} id={"passField"}
+                                   type={openCloseEye ? 'password' : 'text'} className={s.passField}/>
+                            <OpenCloseEye/>
+                        </div>
+                        <div className={s.passFieldItems}>
+                            <label
+                                className={registrationConfirmPasswordError ? s.registrationConfirmPasswordError : ''}
+                                htmlFor="passField">{registrationConfirmPasswordError ? 'You entered different passwords. ' : "Confirm Password"}</label>
+                            <input onClick={() => ChangeErrorToFalse()} onChange={createConfirmPassword}
+                                   id={"passField"}
+                                   type={openCloseEye ? 'password' : 'text'} className={s.passField}/>
+                            <OpenCloseEye/>
+                        </div>
+                    </form>
+                    <div className={s.footer}>
+                        <button onClick={() => cancelClick()} className={s.registerCancelButton}>Cancel</button>
+                        <button onClick={() => clickOnRegister()} className={s.registerCancelButton}>Register</button>
+                    </div>
+                </div>
             </div>
-            <form action="#" className={s.stylesForTheform}>
-                <div className={s.emailFieldItems}>
-                    <label className={errorEmailAlreadyExist ? s.errorTextFromResponse :''}
-                           htmlFor="emailField">{errorEmailAlreadyExist ? errorTextFromResponse : 'Email'}</label>
-                    <input onClick={()=> ChangeErrorToFalse()} onChange={createEmail} id={"emailField"} type="email" className={s.emailField}/>
-                </div>
-                <div className={s.passFieldItems}>
-                    <label
-                        className={registrationLengthPasswordError ? s.registrationConfirmPasswordError : ''}
-                        htmlFor="passField">{registrationConfirmPasswordError ? "Password" : (registrationLengthPasswordError ? 'The password must be more than 7 characters' : "Password")}</label>
-                    <input onClick={() => ChangeErrorToFalse()} onChange={createPassword} id={"passField"}
-                           type={openCloseEye ? 'password' : 'text'} className={s.passField}/>
-                    <OpenCloseEye/>
-                </div>
-                <div className={s.passFieldItems}>
-                    <label
-                        className={registrationConfirmPasswordError ? s.registrationConfirmPasswordError : ''}
-                        htmlFor="passField">{registrationConfirmPasswordError ? 'You entered different passwords. ' : "Confirm Password"}</label>
-                    <input onClick={() => ChangeErrorToFalse()} onChange={createConfirmPassword} id={"passField"}
-                           type={openCloseEye ? 'password' : 'text'} className={s.passField}/>
-                    <OpenCloseEye/>
-                </div>
-            </form>
-            <div className={s.footer}>
-                <button onClick={()=>cancelClick()} className={s.registerCancelButton}>Cancel</button>
-                <button onClick={() => clickOnRegister()} className={s.registerCancelButton}>Register</button>
-            </div>
-
-
-        </div>
-    </div>
+        }
+    </>
 }
 
 export default Registration

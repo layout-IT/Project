@@ -6,13 +6,15 @@ import {setNewPasswordTC} from "../../../redux/new-password-reducer/new-password
 import {RootState} from "../../../redux/store";
 import {IsLoginAC} from "../../../redux/login-reducer/login-reducer";
 import OpenCloseEye from "../../features/isOpenEye/OpenCloseEye";
+import Preloader from "../../features/Preloader/Preloader";
 
 export const NewPassword = () => {
+    let openCloseEye = useSelector<RootState, boolean>(state => state.login.openCloseEye)
     const {token} = useParams()
     const navigate = useNavigate()
     const dispatch = useDispatch()
     let [newPassword, setNewPassword] = useState('')
-
+    let status = useSelector<RootState, string>(state => state.login.status)
     const enteringANewPassword = (e: ChangeEvent<HTMLInputElement>) => {
         setNewPassword(e.currentTarget.value)
     }
@@ -21,28 +23,32 @@ export const NewPassword = () => {
         dispatch(IsLoginAC(false))
         navigate('/login')
     }
-    return <div className={s.wrapper}>
-        <div className={s.container}>
-            <div className={s.title}>
-                <h1> It-Incubator</h1>
-                <h3>Create new password</h3>
-            </div>
-            <form action="#" className={s.stylesForTheform}>
-                <div className={s.emailFieldItems}>
-                    <input onChange={enteringANewPassword} id={"emailField"} type="password" className={s.emailField}
-                           placeholder={'Password'}/>
-                    <OpenCloseEye/>
+    return <>
+        {status === "loading" ? <Preloader/>
+            : <div className={s.wrapper}>
+                <div className={s.container}>
+                    <div className={s.title}>
+                        <h1> It-Incubator</h1>
+                        <h3>Create new password</h3>
+                    </div>
+                    <form action="#" className={s.stylesForTheform}>
+                        <div className={s.emailFieldItems}>
+                            <input onChange={enteringANewPassword} id={"emailField"}
+                                   type={openCloseEye ? 'password' : 'text'}
+                                   className={s.emailField}
+                                   placeholder={'Password'}/>
+                            <OpenCloseEye/>
+                        </div>
+                    </form>
+                    <p className={s.instructions}>Create new password and we will send you futher instructions to
+                        email</p>
+                    <div className={s.footer}>
+                        <button onClick={() => getANewPassword()} className={s.sendButton}>Create new password</button>
+                    </div>
                 </div>
-            </form>
-            <p className={s.instructions}>Create new password and we will send you futher instructions to email</p>
-            <div className={s.footer}>
-                <button onClick={() => getANewPassword()} className={s.sendButton}>Create new password</button>
-
             </div>
-
-
-        </div>
-    </div>
+        }
+    </>
 }
 
 export default NewPassword

@@ -8,7 +8,6 @@ import {NavLink} from "react-router-dom";
 import Preloader from "../../features/Preloader/Preloader";
 import OpenCloseEye from "../../features/isOpenEye/OpenCloseEye";
 
-
 export const Login = () => {
     // let data = {
     //     email :"nya-admin@nya.nya",
@@ -16,7 +15,6 @@ export const Login = () => {
     //     rememberMe : false
     // }
     const dispatch = useDispatch()
-
     let status = useSelector<RootState, string>(state => state.login.status)
     let IsLogin = useSelector<RootState, boolean>(state => state.login.isLogin)
     let openCloseEye = useSelector<RootState, boolean>(state => state.login.openCloseEye)
@@ -25,7 +23,6 @@ export const Login = () => {
     let [titleEmail, setTitleEmail] = useState('')
     let [titlePassword, setTitlePassword] = useState('')
     let [titleRememberMe, setTitleRememberMe] = useState(false)
-
     const changeTitleEmail = (e: ChangeEvent<HTMLInputElement>) => {
         setTitleEmail(e.currentTarget.value)
     }
@@ -41,7 +38,6 @@ export const Login = () => {
     const funOpenCloseEye = () => {
         !openCloseEye ? dispatch(OpenCloseEyeAC(true)) : dispatch(OpenCloseEyeAC(false))
     }
-
     if (IsLogin) {
 
         return <Navigate to={"/profile"}/>
@@ -66,7 +62,6 @@ export const Login = () => {
                                    type="email"
                                    className={s.emailField}/>
                         </div>
-
                         <div className={s.passFieldItems}>
                             <label className={errorLogin ? s.erorrLogin : ''}
                                    htmlFor="passField">{errorLogin ? errorLoginText : 'Password'}</label>
@@ -76,8 +71,9 @@ export const Login = () => {
                                    className={s.passField}/>
                             <OpenCloseEye/>
                         </div>
-                        <div className={s.checkbox}><input onChange={changeCheckboxRememberMe}
-                                                           type="checkbox"/> Remember Me
+                        <div className={s.checkbox}><input
+                            onChange={changeCheckboxRememberMe}
+                            type="checkbox"/> Remember Me
                         </div>
                     </form>
                     <NavLink to={'/forgot-my-password'} className={s.forgotPass}>Forgot Password</NavLink>

@@ -18,7 +18,6 @@ function Profile() {
             navigate('/login')
         }
     }, [])
-
     const LogOut = () => {
         dispatch(LogOutTC())
     }
@@ -31,8 +30,6 @@ function Profile() {
                 <button className={s.buttonLogOut} onClick={() => LogOut()}>LogOut</button>
             </div>
         }
-
-
     </>
 }
 

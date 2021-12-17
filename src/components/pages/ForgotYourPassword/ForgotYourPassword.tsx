@@ -5,12 +5,12 @@ import {RootState} from "../../../redux/store";
 import {IsLoginAC, RequestStatusType} from "../../../redux/login-reducer/login-reducer";
 import {FordotPasswordTC} from "../../../redux/forgot-your-password-reducer/forgot-your-password-reducer";
 import {NavLink, useNavigate} from "react-router-dom";
+import Preloader from "../../features/Preloader/Preloader";
 
 export const ForgotYourPassword = () => {
-
+    let status = useSelector<RootState, string>(state => state.login.status)
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    let IsLogin = useSelector<RootState, boolean>(state => state.login.isLogin)
     let [Email, setEmail] = useState('')
     let [from, setFrom] = useState('test-front-admin <cbu3ucm@mail.ru>')
     const EmailForgotPassword = (e: ChangeEvent<HTMLInputElement>) => {
@@ -20,32 +20,36 @@ export const ForgotYourPassword = () => {
         return '`<div style="background-color: lime; padding: 15px"> password recovery link:<a href=\'https://layout-it.github.io/Project#/new-password/$token$\'>link</a></div>`'
     }
     let [message, setMessage] = useState(letterToEmail)
-
     const SendInstructions = () => {
         dispatch(FordotPasswordTC(Email, from, message))
         dispatch(IsLoginAC(true))
         navigate('/check-email')
     }
-    return <div className={s.wrapper}>
-        <div className={s.container}>
-            <div className={s.title}>
-                <h1> It-Incubator</h1>
-                <h3>Forgot your password?</h3>
-            </div>
-            <form action="#" className={s.stylesForTheform}>
-                <div className={s.emailFieldItems}>
-                    <input onChange={EmailForgotPassword} id={"emailField"} type="email" className={s.emailField}
-                           placeholder={'Email'}/>
+    return <>
+        {status === "loading" ? <Preloader/>
+            : <div className={s.wrapper}>
+                <div className={s.container}>
+                    <div className={s.title}>
+                        <h1> It-Incubator</h1>
+                        <h3>Forgot your password?</h3>
+                    </div>
+                    <form action="#" className={s.stylesForTheform}>
+                        <div className={s.emailFieldItems}>
+                            <input onChange={EmailForgotPassword} id={"emailField"} type="email"
+                                   className={s.emailField}
+                                   placeholder={'Email'}/>
+                        </div>
+                    </form>
+                    <p className={s.instructions}>Enter your email address and we will send you further instructions</p>
+                    <div className={s.footer}>
+                        <button onClick={() => SendInstructions()} className={s.sendButton}>Send Instructions</button>
+                        <div className={s.passwordQuestion}>Did you remember your password?</div>
+                        <NavLink to={'/login'} className={s.tryLogging}>Try logging in</NavLink>
+                    </div>
                 </div>
-            </form>
-            <p className={s.instructions}>Enter your email address and we will send you further instructions</p>
-            <div className={s.footer}>
-                <button onClick={() => SendInstructions()} className={s.sendButton}>Send Instructions</button>
-                <div className={s.passwordQuestion}>Did you remember your password?</div>
-                <NavLink to={'/login'} className={s.tryLogging}>Try logging in</NavLink>
             </div>
-        </div>
-    </div>
+        }
+    </>
 }
 
 export default ForgotYourPassword
