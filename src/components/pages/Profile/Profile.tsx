@@ -13,14 +13,14 @@ function Profile() {
     let status = useSelector<RootState, string>(state => state.login.status)
     let IsLogin = useSelector<RootState, boolean>(state => state.login.isLogin)
     const navigate = useNavigate()
+    const LogOut = () => {
+        dispatch(LogOutTC())
+    }
     useEffect(() => {
         if (!IsLogin) {
             navigate('/login')
         }
     }, [])
-    const LogOut = () => {
-        dispatch(LogOutTC())
-    }
     return <>
         {status === "loading" ? <Preloader/>
             : <div>
