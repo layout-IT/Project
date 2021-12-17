@@ -9,7 +9,7 @@ function PasswordChangeSsuccessful() {
     const navigate = useNavigate()
     setTimeout(() => {
         navigate('/login')
-    }, 4000)
+    }, 2000)
     useEffect(() => {
         dispatch(SuccessfulPasswordReplacementAC(false))
     }, [])
