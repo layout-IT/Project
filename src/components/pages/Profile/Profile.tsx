@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
-import {Navigate, useNavigate} from "react-router-dom";
+import {useNavigate, Navigate} from "react-router-dom";
 import s from './Profile.module.scss'
 import {LogOutTC, RequestStatusType} from "../../../redux/login-reducer/login-reducer";
 import Preloader from "../../features/Preloader/Preloader";
@@ -16,9 +16,11 @@ function Profile() {
     const LogOut = () => {
         dispatch(LogOutTC())
     }
-        if (!IsLogin) {
-            navigate('/login')
-        }
+
+    if (!IsLogin) {
+        console.log('redirect')
+        return <Navigate to='/login' />
+    }
 
     return <>
         {status === "loading" ? <Preloader/>

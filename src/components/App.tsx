@@ -14,7 +14,7 @@ import {useNavigate} from 'react-router-dom'
 import PasswordChangeSsuccessful from "./features/PasswordChangeSuccessfil/PasswordChangeSsuccessful";
 
 export const PATH = {
-    PROFILE: '/profile',
+    PROFILE: '/',
     REGISTRATION: '/registration',
     TEST: '/test',
     NEW_PASSWORD: '/new-password/:token',
@@ -28,15 +28,15 @@ function App() {
     return (
         <div className="App">
             <Routes>
-                <Route path={PATH.LOGIN} element={<Login/>}/>
                 <Route path={PATH.PROFILE} element={<Profile/>}/>
+                <Route path={PATH.LOGIN} element={<Login/>}/>
                 <Route path={PATH.REGISTRATION} element={<Registration/>}/>
                 <Route path={PATH.NEW_PASSWORD} element={<NewPassword/>}/>
                 <Route path={PATH.FORGOT_MY_PASSWORD} element={<ForgotYourPassword/>}/>
                 <Route path={PATH.SUCCESS_CHANGE_PASSWORD} element={<PasswordChangeSsuccessful/>}/>
                 <Route path={PATH.CHECK_EMAIL} element={<CheckEmail/>}/>
-                <Route path='*' element={<Login/>}/>
-                {/*<Route path='*' element={<NotFound/>}/>*/}
+                <Route path={'*'} element={<NotFound/>}/>
+
             </Routes>
         </div>
     );
