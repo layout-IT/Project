@@ -10,7 +10,7 @@ export const ForgotYourPassword = () => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    let status = useSelector<RootState, RequestStatusType>(state => state.login.status)
+    let IsLogin = useSelector<RootState, boolean>(state => state.login.isLogin)
     let [Email, setEmail] = useState('')
     let [from, setFrom] = useState('test-front-admin <cbu3ucm@mail.ru>')
     let [message, setMessage] = useState(`<div style="background-color: lime; padding: 15px"> password recovery link:<a href='https://layout-it.github.io/Project/#/new-password/$token$'>link</a></div>`)
@@ -21,6 +21,7 @@ export const ForgotYourPassword = () => {
         dispatch(FordotPasswordTC(Email, from, message))
         dispatch(IsLoginAC(true))
         navigate('/check-email')
+        console.log(IsLogin)
     }
     return <div className={s.wrapper}>
         <div className={s.container}>
