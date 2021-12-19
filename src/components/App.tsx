@@ -12,6 +12,8 @@ import {useSelector} from "react-redux";
 import {RootState} from "../redux/store";
 import {useNavigate} from 'react-router-dom'
 import PasswordChangeSsuccessful from "./features/PasswordChangeSuccessfil/PasswordChangeSsuccessful";
+import Packs from './pages/Packs/Packs';
+import Cards from './pages/Cards/Cards';
 
 export const PATH = {
     PROFILE: '/',
@@ -22,7 +24,9 @@ export const PATH = {
     FORGOT_MY_PASSWORD: '/forgot-my-password',
     NOT_FOUND: '/404',
     SUCCESS_CHANGE_PASSWORD: '/success-change-password',
-    CHECK_EMAIL: '/check-email'
+    CHECK_EMAIL: '/check-email',
+    PACKS: '/packs',
+    CARDS: '/cards',
 }
 
 function App() {
@@ -36,8 +40,9 @@ function App() {
                 <Route path={PATH.FORGOT_MY_PASSWORD} element={<ForgotYourPassword/>}/>
                 <Route path={PATH.SUCCESS_CHANGE_PASSWORD} element={<PasswordChangeSsuccessful/>}/>
                 <Route path={PATH.CHECK_EMAIL} element={<CheckEmail/>}/>
+                <Route path={PATH.PACKS} element={<Packs/>}/>
+                <Route path={PATH.CARDS} element={<Cards/>}/>
                 <Route path={'*'} element={<NotFound/>}/>
-
             </Routes>
         </div>
     );
