@@ -5,6 +5,7 @@ import {newPasswordReducer} from "./new-password-reducer/new-password-reducer";
 import {profileReducer} from "./profile-reducer/profile-reducer";
 import {registrationReducer} from "./registration-reducer/registration-reducer";
 import thunkMiddleware from 'redux-thunk'
+import {packsReducer} from "./packs-reducer/packsReduser";
 
 const rootReducer = combineReducers({
     forgotMyPassword: forgotYourPasswordReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     newPassword: newPasswordReducer,
     profile: profileReducer,
     registration: registrationReducer,
+    packs:packsReducer,
 })
 
 export type RootState = ReturnType<typeof store.getState>

@@ -1,9 +1,31 @@
 import s from './Packs.module.scss'
-import {NavLink} from "react-router-dom";
-import React from "react";
+import React, {ChangeEvent, ChangeEventHandler, FormEventHandler, useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../../redux/store";
+import {
+    getStateTC,
+    SelectedValueOfTheSelectInPacksAC,
+    ValueFromThePacksInputAC
+} from "../../../redux/packs-reducer/packsReduser";
+import {log} from "util";
 
 function Packs() {
-
+    let [inputValue, setInputValue] = useState('')
+    const dispatch = useDispatch()
+    const inputChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
+        setInputValue(e.currentTarget.value)
+    }
+    const AddNewPack = () => {
+        dispatch(ValueFromThePacksInputAC(inputValue))
+    }
+    const SelectedValueOfTheSelect = (e: ChangeEvent<HTMLSelectElement>) => {
+        dispatch(SelectedValueOfTheSelectInPacksAC(e.currentTarget.value))
+    }
+    const valueFromInput = useSelector<RootState, string>(state => state.packs.valueFromThePacksInput)
+    const valueFromSelect = useSelector<RootState, string>(state => state.packs.valueFromThePacksSelect)
+    useEffect(() => {
+        dispatch(getStateTC(valueFromInput, valueFromSelect))
+    }, [valueFromInput, valueFromSelect])
     return <div className={s.wrapper}>
         <div className={s.container}>
             <div className={s.sidebar}>
@@ -25,10 +47,11 @@ function Packs() {
                 <div className={s.mainFieldContainer}>
                     <h2>Packs list</h2>
                     <div className={s.searchBar}>
-                        <div className={s.inputFieldContainer}><input placeholder="Search..." className={s.inputField}
+                        <div className={s.inputFieldContainer}><input onChange={inputChangeValue}
+                                                                      placeholder="Search..."
+                                                                      className={s.inputField}
                                                                       type="text"/></div>
-
-                        <button className={s.searchButton}> Add new pack</button>
+                        <button onClick={() => AddNewPack()} className={s.searchButton}> Add new pack</button>
                     </div>
                     <table className={s.tableStyle}>
                         <thead className={s.header}>
@@ -90,10 +113,10 @@ function Packs() {
                                   className=""></path>
                         </svg>
                         <span className={s.ShowSpan}>Show</span>
-                        <select className={s.select}>
-                            <option value="">1</option>
-                            <option value="">2</option>
-                            <option value="">3</option>
+                        <select onChange={SelectedValueOfTheSelect} className={s.select}>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
                         </select>
                         <span>Cards per Page</span>
                     </div>
@@ -105,3 +128,5 @@ function Packs() {
 }
 
 export default Packs
+
+
