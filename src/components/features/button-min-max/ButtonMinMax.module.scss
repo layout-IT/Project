@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  svg {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+
+    &:active {
+      &:first-child {
+        position: relative;
+        top: -5px;
+      }
+
+      &:last-child {
+        position: relative;
+        top: 5px;
+      }
+    }
+  }
+}
+
+
+.thSpan {
+  white-space: nowrap;
+  cursor: pointer;
+  position: relative;
+  top: 2px;
+  margin-right: 5px;
+}
+
+.sd {
+  display: flex;
+}

@@ -5,8 +5,8 @@ import {OpenCloseEyeAC, LoginTC, RequestStatusType, ErrorLogin} from "../../../r
 import {Navigate} from "react-router-dom";
 import {RootState} from "../../../redux/store";
 import {NavLink} from "react-router-dom";
-import Preloader from "../../features/Preloader/Preloader";
-import OpenCloseEye from "../../features/isOpenEye/OpenCloseEye";
+import Preloader from "../../features/preloader/Preloader";
+import OpenCloseEye from "../../features/openEye/OpenCloseEye";
 
 export const Login = () => {
     // let data = {

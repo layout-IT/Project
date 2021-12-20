@@ -5,7 +5,7 @@ export type initialStateType = typeof initialState
 
 const initialState = {
     valueFromThePacksInput : '',
-    valueFromThePacksSelect:''
+    valueFromThePacksButton:''
 }
 
 export const packsReducer = (state = initialState, action: ActionTypes): initialStateType => {
@@ -13,7 +13,7 @@ export const packsReducer = (state = initialState, action: ActionTypes): initial
         case "VALUE-FROM-THE-PACKS-INPUT":
             return {...state,valueFromThePacksInput : action.valueOfTheInput}
         case "VALUE-FROM-THE-PACKS-SELECT":
-            return {...state,valueFromThePacksSelect : action.valueOfTheSelect}
+            return {...state,valueFromThePacksButton : action.valueOfTheButton}
         default:
             return state
     }
@@ -25,16 +25,16 @@ export const ValueFromThePacksInputAC = (valueOfTheInput: string) => {
         valueOfTheInput
     }as const
 }
-export const SelectedValueOfTheSelectInPacksAC = (valueOfTheSelect: string) => {
+export const SelectedValueOfTheButtonInPacksAC = (valueOfTheButton: string) => {
     return {
         type: 'VALUE-FROM-THE-PACKS-SELECT',
-        valueOfTheSelect
+        valueOfTheButton
     }as const
 }
 
 export const getStateTC = (valueFromInput:string,valueFromSelect:string) => (dispatch: Dispatch<any>)=> {
-return 
+return
 }
 type ActionTypes =
     | ReturnType<typeof ValueFromThePacksInputAC>
-    | ReturnType<typeof SelectedValueOfTheSelectInPacksAC>
+    | ReturnType<typeof SelectedValueOfTheButtonInPacksAC>

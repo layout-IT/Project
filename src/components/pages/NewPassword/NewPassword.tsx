@@ -8,12 +8,12 @@ import {
 } from "../../../redux/new-password-reducer/new-password-reducer";
 import {RootState} from "../../../redux/store";
 import {IsLoginAC} from "../../../redux/login-reducer/login-reducer";
-import OpenCloseEye from "../../features/isOpenEye/OpenCloseEye";
-import Preloader from "../../features/Preloader/Preloader";
+import OpenCloseEye from "../../features/openEye/OpenCloseEye";
+import Preloader from "../../features/preloader/Preloader";
 import {
     RegistrationLengthPasswordErrorAC
 } from "../../../redux/registration-reducer/registration-reducer";
-import PasswordChangeSsuccessful from "../../features/PasswordChangeSuccessfil/PasswordChangeSsuccessful";
+import PasswordChangeSsuccessful from "../../features/passwordChangeSuccessfil/PasswordChangeSsuccessful";
 
 export const NewPassword = () => {
     let registrationLengthPasswordError = useSelector<RootState, boolean>(state => state.registration.registrationLengthPasswordError)

@@ -10,8 +10,8 @@ import {
 import {RootState} from "../../../redux/store";
 import {OpenCloseEyeAC, RequestStatusType} from "../../../redux/login-reducer/login-reducer";
 import {Navigate, NavLink, useNavigate} from "react-router-dom";
-import OpenCloseEye from "../../features/isOpenEye/OpenCloseEye";
-import Preloader from "../../features/Preloader/Preloader";
+import OpenCloseEye from "../../features/openEye/OpenCloseEye";
+import Preloader from "../../features/preloader/Preloader";
 
 export const Registration = () => {
     let isRegistered = useSelector<RootState, boolean>(state => state.registration.isRegistered)

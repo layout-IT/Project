@@ -4,10 +4,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 import {
     getStateTC,
-    SelectedValueOfTheSelectInPacksAC,
+    SelectedValueOfTheButtonInPacksAC,
     ValueFromThePacksInputAC
 } from "../../../redux/packs-reducer/packsReduser";
 import {log} from "util";
+import ButtonMinMax from "../../features/button-min-max/ButtonMinMax";
+import Table from "../../features/table/Table";
 
 function Packs() {
     let [inputValue, setInputValue] = useState('')
@@ -18,14 +20,15 @@ function Packs() {
     const AddNewPack = () => {
         dispatch(ValueFromThePacksInputAC(inputValue))
     }
-    const SelectedValueOfTheSelect = (e: ChangeEvent<HTMLSelectElement>) => {
-        dispatch(SelectedValueOfTheSelectInPacksAC(e.currentTarget.value))
+    const SelectedValueOfTheSelect = (e: string) => {
+        dispatch(SelectedValueOfTheButtonInPacksAC(e))
     }
     const valueFromInput = useSelector<RootState, string>(state => state.packs.valueFromThePacksInput)
-    const valueFromSelect = useSelector<RootState, string>(state => state.packs.valueFromThePacksSelect)
+    const valueFromButton = useSelector<RootState, string>(state => state.packs.valueFromThePacksButton)
+    console.log(valueFromButton)
     useEffect(() => {
-        dispatch(getStateTC(valueFromInput, valueFromSelect))
-    }, [valueFromInput, valueFromSelect])
+        dispatch(getStateTC(valueFromInput, valueFromButton))
+    }, [valueFromInput, valueFromButton])
     return <div className={s.wrapper}>
         <div className={s.container}>
             <div className={s.sidebar}>
@@ -53,43 +56,7 @@ function Packs() {
                                                                       type="text"/></div>
                         <button onClick={() => AddNewPack()} className={s.searchButton}> Add new pack</button>
                     </div>
-                    <table className={s.tableStyle}>
-                        <thead className={s.header}>
-                        <tr>
-                            <th align="left">Name</th>
-                            <th align="left">Cards</th>
-                            <th align="left">Last Updated</th>
-                            <th align="left">Created by</th>
-                            <th>
-                                Actions
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>Pack Name</td>
-                            <td>4</td>
-                            <td>18.03.2021</td>
-                            <td>Ivan Ivanov</td>
-                            <td className={s.buttonsCell}>
-                                <button className={s.cellDel}>Delete</button>
-                                <button className={s.cellCommon}>Edit</button>
-                                <button className={s.cellCommon}>Learn</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Name Pack</td>
-                            <td>37</td>
-                            <td>19.03.2021</td>
-                            <td>Petr Ivanov</td>
-                            <td className={s.buttonsCell}>
-                                <button className={s.cellDel}>Delete</button>
-                                <button className={s.cellCommon}>Edit</button>
-                                <button className={s.cellCommon}>Learn</button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <Table/>
                     <div className={s.pagination}>
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-circle-right"
                              role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
@@ -98,11 +65,11 @@ function Packs() {
                                   d="M256 8c137 0 248 111 248 248S393 504 256 504 8 393 8 256 119 8 256 8zm-28.9 143.6l75.5 72.4H120c-13.3 0-24 10.7-24 24v16c0 13.3 10.7 24 24 24h182.6l-75.5 72.4c-9.7 9.3-9.9 24.8-.4 34.3l11 10.9c9.4 9.4 24.6 9.4 33.9 0L404.3 273c9.4-9.4 9.4-24.6 0-33.9L271.6 106.3c-9.4-9.4-24.6-9.4-33.9 0l-11 10.9c-9.5 9.6-9.3 25.1.4 34.4z"
                                   className=""></path>
                         </svg>
-                        <button>1</button>
-                        <button>2</button>
-                        <button>3</button>
-                        <button>4</button>
-                        <button>5</button>
+                        <button onClick={(e) => SelectedValueOfTheSelect(e.currentTarget.value)} value={'1'}>1</button>
+                        <button onClick={(e) => SelectedValueOfTheSelect(e.currentTarget.value)} value={'2'}>2</button>
+                        <button onClick={(e) => SelectedValueOfTheSelect(e.currentTarget.value)} value={'3'}>3</button>
+                        <button onClick={(e) => SelectedValueOfTheSelect(e.currentTarget.value)} value={'4'}>4</button>
+                        <button onClick={(e) => SelectedValueOfTheSelect(e.currentTarget.value)} value={'5'}>5</button>
                         <span className={s.spanellipsis}>...</span>
                         <span className={s.spanNumber}>5</span>
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-circle-left"
@@ -113,7 +80,7 @@ function Packs() {
                                   className=""></path>
                         </svg>
                         <span className={s.ShowSpan}>Show</span>
-                        <select onChange={SelectedValueOfTheSelect} className={s.select}>
+                        <select className={s.select}>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -123,7 +90,6 @@ function Packs() {
                 </div>
             </div>
         </div>
-
     </div>
 }
 

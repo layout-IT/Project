@@ -5,7 +5,7 @@ import {RootState} from "../../../redux/store";
 import {IsLoginAC, RequestStatusType} from "../../../redux/login-reducer/login-reducer";
 import {FordotPasswordTC} from "../../../redux/forgot-your-password-reducer/forgot-your-password-reducer";
 import {NavLink, useNavigate} from "react-router-dom";
-import Preloader from "../../features/Preloader/Preloader";
+import Preloader from "../../features/preloader/Preloader";
 
 export const ForgotYourPassword = () => {
     let status = useSelector<RootState, string>(state => state.login.status)

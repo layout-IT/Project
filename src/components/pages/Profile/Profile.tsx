@@ -4,7 +4,7 @@ import {RootState} from "../../../redux/store";
 import {useNavigate, Navigate} from "react-router-dom";
 import s from './Profile.module.scss'
 import {LogOutTC, RequestStatusType} from "../../../redux/login-reducer/login-reducer";
-import Preloader from "../../features/Preloader/Preloader";
+import Preloader from "../../features/preloader/Preloader";
 
 function Profile() {
     const dispatch = useDispatch()

@@ -13,22 +13,47 @@ tbody {
   background-color: white;
 }
 
-th {
+.thSpan {
   padding: 10px;
   white-space: nowrap;
-  span{
-    position: relative;
-    cursor: pointer;
-    &::before{
-      position: absolute;
-      content: '➪';
-      transform: rotate(90deg);
-      top: 3px;
-      left: 0;
+  position: relative;
+  cursor: pointer;
+}
+.thButton{
+  &::after {
+    position: absolute;
+    content: '➪';
+    transform: rotate(90deg);
+    top: 20px;
+    left: 113px;
+    display: none;
+
+    &:active {
+      top: 14px;
+    }
+  }
+
+  &::before {
+    position: absolute;
+    content: '➪';
+    transform: rotate(-90deg);
+    top: 0;
+    left: 111px;
+    display: none;
+  }
+
+  &:hover {
+    &::before {
+      display: block;
     }
 
+    &::after {
+      display: block;
+    }
   }
 }
+
+
 
 td {
   position: relative;
@@ -119,10 +144,12 @@ h2 {
   font-weight: 700;
   margin-bottom: 15px;
   padding: 0 0 0 30px;
-  span{
+
+  span {
     position: relative;
     cursor: pointer;
-    &::before{
+
+    &::before {
       position: absolute;
       content: '➯';
       transform: rotate(180deg);

@@ -11,7 +11,7 @@ import Profile from "./pages/Profile/Profile";
 import {useSelector} from "react-redux";
 import {RootState} from "../redux/store";
 import {useNavigate} from 'react-router-dom'
-import PasswordChangeSsuccessful from "./features/PasswordChangeSuccessfil/PasswordChangeSsuccessful";
+import PasswordChangeSsuccessful from "./features/passwordChangeSuccessfil/PasswordChangeSsuccessful";
 import Packs from './pages/Packs/Packs';
 import Cards from './pages/Cards/Cards';
 

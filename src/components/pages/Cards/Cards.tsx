@@ -14,10 +14,10 @@ function Cards() {
                     <table className={s.tableStyle}>
                         <thead className={s.header}>
                         <tr>
-                            <th align="left">Question</th>
-                            <th align="left">Answer</th>
-                            <th align="left">Last Updated <span></span></th>
-                            <th align="left">Grade</th>
+                            <th align="left"><span>Question</span> </th>
+                            <th align="left"><span>Answer</span></th>
+                            <th align="left"><span className={s.thSpan}>Last Updated</span> <span></span></th>
+                            <th align="left"><span>Grade</span></th>
                         </tr>
                         </thead>
                         <tbody>
