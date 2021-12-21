@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {Api} from "../../api/Api";
+import {ApiLogin} from "../../api/apiLogin";
 import {ErrorLogin, ErrorTextFromResponse, IsLoginAC, PreloaderStatus, ProfileAC} from "../login-reducer/login-reducer";
 
 type StateType = typeof initialState
@@ -28,7 +28,7 @@ export const registrationReducer = (state = initialState, action: ActionTypes): 
 
 export const LogRegistrationTC = (email: string, password: string) => (dispatch: Dispatch) => {
 
-    return Api.loginRegistration(email, password)
+    return ApiLogin.loginRegistration(email, password)
         .then((res) => {
             dispatch(LoginRegistrationAC(true))
 

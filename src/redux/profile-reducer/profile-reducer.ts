@@ -1,5 +1,5 @@
 import {ProfileAC} from "../login-reducer/login-reducer";
-import {ResponsType} from "../../api/Api";
+import {ResponsType} from "../../api/apiLogin";
 
 export type initialStateType = ResponsType & {}
 

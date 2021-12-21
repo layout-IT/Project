@@ -10,7 +10,7 @@ import {
 import {RootState} from "../../../redux/store";
 import {OpenCloseEyeAC, RequestStatusType} from "../../../redux/login-reducer/login-reducer";
 import {Navigate, NavLink, useNavigate} from "react-router-dom";
-import OpenCloseEye from "../../features/openEye/OpenCloseEye";
+import OpenCloseEye from "../../features/OpenEye/OpenCloseEye";
 import Preloader from "../../features/preloader/Preloader";
 
 export const Registration = () => {

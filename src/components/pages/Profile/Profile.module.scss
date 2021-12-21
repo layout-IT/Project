@@ -5,6 +5,26 @@
   margin-bottom: 20px;
 }
 
+.buttonGoToPacks {
+  display: flex;
+  justify-content: right;
+  margin-bottom: 20px;
+
+  svg {
+    cursor: pointer;
+
+    &:active {
+      position: relative;
+      right: -5px;
+    }
+  }
+
+}
+
+.gotoPacksText {
+  margin-right: 10px;
+}
+
 .userName {
   margin-bottom: 20px;
 }

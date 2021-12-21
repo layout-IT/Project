@@ -1,15 +1,16 @@
 import s from './Packs.module.scss'
-import React, {ChangeEvent, ChangeEventHandler, FormEventHandler, useEffect, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 import {
+    getCardPacksTC,
     getStateTC,
     SelectedValueOfTheButtonInPacksAC,
+    SelectedValueOfTheOptionInPacksAC,
     ValueFromThePacksInputAC
 } from "../../../redux/packs-reducer/packsReduser";
-import {log} from "util";
-import ButtonMinMax from "../../features/button-min-max/ButtonMinMax";
-import Table from "../../features/table/Table";
+import Table from "../../features/Table/Table";
+import {getAuthMeTC} from "../../../redux/login-reducer/login-reducer";
 
 function Packs() {
     let [inputValue, setInputValue] = useState('')
@@ -23,12 +24,19 @@ function Packs() {
     const SelectedValueOfTheSelect = (e: string) => {
         dispatch(SelectedValueOfTheButtonInPacksAC(e))
     }
+    const SelectedValueOfTheOption = (e: string) => {
+        dispatch(SelectedValueOfTheOptionInPacksAC(e))
+    }
     const valueFromInput = useSelector<RootState, string>(state => state.packs.valueFromThePacksInput)
     const valueFromButton = useSelector<RootState, string>(state => state.packs.valueFromThePacksButton)
-    console.log(valueFromButton)
+
     useEffect(() => {
         dispatch(getStateTC(valueFromInput, valueFromButton))
     }, [valueFromInput, valueFromButton])
+    useEffect(() => {
+        dispatch(getAuthMeTC())
+        dispatch(getCardPacksTC())
+    }, [])
     return <div className={s.wrapper}>
         <div className={s.container}>
             <div className={s.sidebar}>
@@ -81,7 +89,8 @@ function Packs() {
                         </svg>
                         <span className={s.ShowSpan}>Show</span>
                         <select className={s.select}>
-                            <option value="1">1</option>
+                            <option onClick={(e) => SelectedValueOfTheOption(e.currentTarget.value)} value="1">1
+                            </option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                         </select>

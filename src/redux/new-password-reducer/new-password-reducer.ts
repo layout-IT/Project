@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {Api} from "../../api/Api";
+import {ApiLogin} from "../../api/apiLogin";
 import {PreloaderStatus} from "../login-reducer/login-reducer";
 
 export type StateType = typeof initialState
@@ -18,7 +18,7 @@ export const newPasswordReducer = (state = initialState, action: ActionTypes): S
 }
 export const setNewPasswordTC = (password: string, resetPasswordToken: string) => (dispatch: Dispatch) => {
     dispatch(PreloaderStatus('loading'))
-    return Api.SetNewPassword(password, resetPasswordToken)
+    return ApiLogin.SetNewPassword(password, resetPasswordToken)
         .then((res) => {
             dispatch(SuccessfulPasswordReplacementAC(true))
         })

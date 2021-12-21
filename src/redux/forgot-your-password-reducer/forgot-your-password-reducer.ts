@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {Api} from "../../api/Api";
+import {ApiLogin} from "../../api/apiLogin";
 import {PreloaderStatus} from "../login-reducer/login-reducer";
 
 type StateType = {}
@@ -15,7 +15,7 @@ export const forgotYourPasswordReducer = (state = initialState, action: ActionTy
 
 export const FordotPasswordTC = (email: string, from: string, message: string) => (dispatch: Dispatch) => {
     dispatch(PreloaderStatus('loading'))
-    return Api.ForgotPassword(email, from, message)
+    return ApiLogin.ForgotPassword(email, from, message)
         .then((res) => {
 
         })

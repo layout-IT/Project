@@ -19,7 +19,8 @@ tbody {
   position: relative;
   cursor: pointer;
 }
-.thButton{
+
+.thButton {
   &::after {
     position: absolute;
     content: '➪';
@@ -52,7 +53,6 @@ tbody {
     }
   }
 }
-
 
 
 td {

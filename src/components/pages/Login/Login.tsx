@@ -1,25 +1,26 @@
 import React, {ChangeEvent, useState} from "react";
 import s from './Login.module.scss'
 import {useDispatch, useSelector} from "react-redux";
-import {OpenCloseEyeAC, LoginTC, RequestStatusType, ErrorLogin} from "../../../redux/login-reducer/login-reducer";
-import {Navigate} from "react-router-dom";
+import {
+    OpenCloseEyeAC,
+    LoginTC,
+    ErrorLogin,
+    getAuthMeTC
+} from "../../../redux/login-reducer/login-reducer";
+import {Navigate, useNavigate} from "react-router-dom";
 import {RootState} from "../../../redux/store";
 import {NavLink} from "react-router-dom";
 import Preloader from "../../features/preloader/Preloader";
-import OpenCloseEye from "../../features/openEye/OpenCloseEye";
+import OpenCloseEye from "../../features/OpenEye/OpenCloseEye";
 
 export const Login = () => {
-    // let data = {
-    //     email :"nya-admin@nya.nya",
-    //     password :"1qazxcvBG",
-    //     rememberMe : false
-    // }
     const dispatch = useDispatch()
-    let status = useSelector<RootState, string>(state => state.login.status)
-    let IsLogin = useSelector<RootState, boolean>(state => state.login.isLogin)
-    let openCloseEye = useSelector<RootState, boolean>(state => state.login.openCloseEye)
-    let errorLogin = useSelector<RootState, boolean>(state => state.login.errorLogin)
-    let errorLoginText = useSelector<RootState, string>(state => state.login.errorTextFromResponse)
+    const status = useSelector<RootState, string>(state => state.login.status)
+    const IsLogin = useSelector<RootState, boolean>(state => state.login.isLogin)
+    const openCloseEye = useSelector<RootState, boolean>(state => state.login.openCloseEye)
+    const errorLogin = useSelector<RootState, boolean>(state => state.login.errorLogin)
+    const errorLoginText = useSelector<RootState, string>(state => state.login.errorTextFromResponse)
+    const navigate = useNavigate()
     let [titleEmail, setTitleEmail] = useState('')
     let [titlePassword, setTitlePassword] = useState('')
     let [titleRememberMe, setTitleRememberMe] = useState(false)
@@ -39,15 +40,19 @@ export const Login = () => {
         !openCloseEye ? dispatch(OpenCloseEyeAC(true)) : dispatch(OpenCloseEyeAC(false))
     }
     if (IsLogin) {
+        dispatch(getAuthMeTC())
         return <Navigate to={"/"}/>
     }
     const removeTheErrorFromTheLogin = () => {
         dispatch(ErrorLogin(false))
     }
+
     return <>
         {status === "loading" ? <Preloader/>
             : <div className={s.wrapper}>
+
                 <div className={s.container}>
+
                     <div className={s.title}>
                         <h1> It-Incubator</h1>
                         <h3>Sign In</h3>

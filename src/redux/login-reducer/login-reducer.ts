@@ -1,5 +1,5 @@
 import {Dispatch} from "redux"
-import {Api, ResponsType} from "../../api/Api";
+import {ApiLogin, ResponsType} from "../../api/apiLogin";
 
 type ActionTypes =
     | ReturnType<typeof IsLoginAC>
@@ -82,7 +82,7 @@ export const ErrorTextFromResponse = (errorTextFromResponse: string) => {
 export const LoginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
     dispatch(PreloaderStatus('loading'))
 
-    return Api.login(email, password, rememberMe)
+    return ApiLogin.login(email, password, rememberMe)
         .then((res) => {
             dispatch(ProfileAC(res.data))
             dispatch(IsLoginAC(true))
@@ -99,7 +99,7 @@ export const LoginTC = (email: string, password: string, rememberMe: boolean) =>
 
 export const LogOutTC = () => (dispatch: Dispatch) => {
     dispatch(PreloaderStatus('loading'))
-    return Api.logOut()
+    return ApiLogin.logOut()
         .then((res) => {
             dispatch(IsLoginAC(false))
         })
@@ -107,5 +107,13 @@ export const LogOutTC = () => (dispatch: Dispatch) => {
             dispatch(PreloaderStatus('succeeded'))
         })
 }
-
+export const getAuthMeTC = () => (dispatch: Dispatch) => {
+    dispatch(PreloaderStatus('loading'))
+    return ApiLogin.AuthMe()
+        .then((res) => {
+        })
+        .finally(() => {
+            dispatch(PreloaderStatus('succeeded'))
+        })
+}
 
