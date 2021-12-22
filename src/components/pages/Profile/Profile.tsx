@@ -3,8 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 import {useNavigate, Navigate} from "react-router-dom";
 import s from './Profile.module.scss'
-import {LogOutTC, RequestStatusType} from "../../../redux/login-reducer/login-reducer";
-import Preloader from "../../features/preloader/Preloader";
+import {getAuthMeTC, LogOutTC, RequestStatusType} from "../../../redux/login-reducer/login-reducer";
+import Preloader from "../../features/preloader/Preloader";;
 
 function Profile() {
     const dispatch = useDispatch()
@@ -13,6 +13,9 @@ function Profile() {
     let status = useSelector<RootState, string>(state => state.login.status)
     let IsLogin = useSelector<RootState, boolean>(state => state.login.isLogin)
     const navigate = useNavigate()
+    useEffect(() => {
+        dispatch(getAuthMeTC())
+    }, [])
     const LogOut = () => {
         dispatch(LogOutTC())
     }
@@ -20,11 +23,14 @@ function Profile() {
         navigate('/packs')
     }
     if (!IsLogin) {
+        dispatch(getAuthMeTC())
         return <Navigate to='/login'/>
     }
+
+
     return <>
         {status === "loading" ? <Preloader/>
-            : <div>
+            : <div className={s.wrapper}>
                 <div className={s.buttonGoToPacks}>
                     <div className={s.gotoPacksText}>Go to packs</div>
                     <svg onClick={() => navlinkGotoPacks()} width={'20px'} aria-hidden="true" focusable="false"

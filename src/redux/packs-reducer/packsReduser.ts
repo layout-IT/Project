@@ -1,6 +1,7 @@
 import {Dispatch} from "redux";
 import {store} from "../store";
 import {ApiPacks, cardsPaksType, cardsPaksParametrsType} from "../../api/apiPacks";
+import {PreloaderStatus} from "../login-reducer/login-reducer";
 
 export type initialStateType = typeof initialState
 //export type packsReducerType = initialStateType & cardsPaksType
@@ -65,13 +66,44 @@ export const getCardPacksAC = (cardpacks: cardsPaksType[]) => {
     } as const
 }
 
-export const getStateTC = (valueFromInput: string, valueFromSelect: string) => (dispatch: Dispatch<any>) => {
-    return
-}
-export const getCardPacksTC = () => (dispatch: Dispatch<any>) => {
-    return ApiPacks.pack()
+export const getCardPacksTC = (sortPacks: string) => (dispatch: Dispatch<any>) => {
+    dispatch(PreloaderStatus('loading'))
+    return ApiPacks.pack(sortPacks)
         .then((res) => {
             dispatch(getCardPacksAC(res.data.cardPacks))
+        })
+        .finally(() => {
+            dispatch(PreloaderStatus('succeeded'))
+        })
+}
+export const deletePackTC = (id: string) => (dispatch: Dispatch<any>) => {
+    dispatch(PreloaderStatus('loading'))
+    return ApiPacks.deletePack(id)
+        .then((res) => {
+            console.log('delete')
+        })
+        .finally(() => {
+            dispatch(PreloaderStatus('succeeded'))
+        })
+}
+export const putPackTC = (_id: string, name: string) => (dispatch: Dispatch<any>) => {
+    dispatch(PreloaderStatus('loading'))
+    return ApiPacks.putPack(_id, name)
+        .then((res) => {
+            console.log('put')
+        })
+        .finally(() => {
+            dispatch(PreloaderStatus('succeeded'))
+        })
+}
+export const postcardPackTC = (name: string) => (dispatch: Dispatch<any>) => {
+    dispatch(PreloaderStatus('loading'))
+    return ApiPacks.postcardPack(name)
+        .then((res) => {
+            console.log('post')
+        })
+        .finally(() => {
+            dispatch(PreloaderStatus('succeeded'))
         })
 }
 

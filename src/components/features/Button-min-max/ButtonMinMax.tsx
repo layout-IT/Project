@@ -1,6 +1,6 @@
 import s from "./ButtonMinMax.module.scss";
 import React from "react";
-import {SortPacksAC} from "../../../redux/packs-reducer/packsReduser";
+import {getCardPacksTC, SortPacksAC} from "../../../redux/packs-reducer/packsReduser";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 
@@ -12,11 +12,11 @@ export const ButtonMinMax = React.memo(function (props: PropsType) {
     const dispatch = useDispatch()
     const SortUpPlusName = (name:string) => {
         dispatch(SortPacksAC('0' + name))
-        console.log(0)
+        dispatch(getCardPacksTC(sortPacks))
     }
     const sortDownPlusName = (name:string) => {
         dispatch(SortPacksAC('1' + name))
-        console.log(1)
+        dispatch(getCardPacksTC(sortPacks))
     }
     const sortPacks = useSelector<RootState, string>(state => state.packs.sortPacks)
     console.log(sortPacks)
