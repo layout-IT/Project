@@ -11,6 +11,7 @@ import {
 import Table from "../../features/Table/Table";
 import {getAuthMeTC} from "../../../redux/login-reducer/login-reducer";
 import Preloader from "../../features/preloader/Preloader";
+import DoubleSlider from "../../features/doubleSlider/DoubleSlider";
 
 function Packs() {
     let [inputValue, setInputValue] = useState('')
@@ -51,7 +52,7 @@ function Packs() {
                             </div>
                             <div className={s.bottom}>
                                 <h3>Number of cards</h3>
-                                <input type="range" name="" id=""/>
+                                <DoubleSlider/>
                             </div>
                         </div>
                     </div>

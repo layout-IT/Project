@@ -1,5 +1,6 @@
 import s from "./Cards.module.scss";
 import React from "react";
+import {ButtonMinMax} from "../../features/Button-min-max/ButtonMinMax";
 
 function Cards() {
     return <div className={s.wrapper}>
@@ -16,7 +17,7 @@ function Cards() {
                         <tr>
                             <th align="left"><span>Question</span> </th>
                             <th align="left"><span>Answer</span></th>
-                            <th align="left"><span className={s.thSpan}>Last Updated</span> <span></span></th>
+                            <th align="left"><span className={s.thSpan}><ButtonMinMax name={'Last Updated'}/></span></th>
                             <th align="left"><span>Grade</span></th>
                         </tr>
                         </thead>

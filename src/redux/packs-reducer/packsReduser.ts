@@ -66,7 +66,7 @@ export const getCardPacksAC = (cardpacks: cardsPaksType[]) => {
     } as const
 }
 
-export const getCardPacksTC = (sortPacks: string) => (dispatch: Dispatch<any>) => {
+export const getCardPacksTC = (sortPacks: string) => (dispatch: Dispatch) => {
     dispatch(PreloaderStatus('loading'))
     return ApiPacks.pack(sortPacks)
         .then((res) => {

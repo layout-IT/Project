@@ -19,7 +19,6 @@ export const ButtonMinMax = React.memo(function (props: PropsType) {
         dispatch(getCardPacksTC(sortPacks))
     }
     const sortPacks = useSelector<RootState, string>(state => state.packs.sortPacks)
-    console.log(sortPacks)
     return <div className={s.wrapper}>
         <div className={s.sd}>
             <span className={s.thSpan}>{props.name}</span>
