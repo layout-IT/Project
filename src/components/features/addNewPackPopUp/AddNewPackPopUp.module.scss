@@ -39,6 +39,7 @@
   svg {
     width: 15px;
     transition: all 0.1s ease;
+    cursor: pointer;
 
     &:active {
       transform: rotate(360deg);

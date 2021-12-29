@@ -1,11 +1,13 @@
 import React, {ChangeEvent, Dispatch, SetStateAction, useState} from "react";
 import s from './DeletePopUp.module.scss'
 import {useDispatch} from "react-redux";
-import { postcardPackTC } from "../../redux/packs-reducer/packsReduser";
+import {deletePackTC} from "../../redux/packs-reducer/packsReduser";
+
 type propsType={
-    setAddpackPP:Dispatch<SetStateAction<boolean>>
+    setDelete:Dispatch<SetStateAction<boolean>>
+    deletingById: string
 }
-function EditPopUp (props:propsType) {
+function DeletePopUp (props:propsType) {
     let [activeButtonC, setActiveButtonC] = useState(false)
     let [activeButtonS, setActiveButtonS] = useState(false)
     let [inputValue, setInputValue] = useState('')
@@ -15,25 +17,29 @@ function EditPopUp (props:propsType) {
     }
     const changeButtonCancel = () => {
         setActiveButtonC(true)
-        props.setAddpackPP(false)
+        props.setDelete(false)
         if(activeButtonS){
             setActiveButtonS(false)
         }
     }
-    const changeButtonSave = () => {
+    const clickOnSvg = () => {
+        props.setDelete(false)
+    }
+    const changeButtonDel = () => {
         setActiveButtonS(true)
-        dispatch(postcardPackTC(inputValue))
-        props.setAddpackPP(false)
+        dispatch(deletePackTC(props.deletingById))
+        props.setDelete(false)
         if(activeButtonC){
             setActiveButtonC(false)
         }
     }
 
-    return <div className={s.wrapper} onClick={()=>   props.setAddpackPP(false)}>
+    return <div className={s.wrapper}>
+    <div className={s.some} onClick={()=>   props.setDelete(false)}></div>
         <div className={s.container}>
             <div className={s.header}>
-                <div className={s.title}>Add new pack</div>
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" role="img"
+                <div className={s.title}>Delete Pack</div>
+                <svg onClick={()=>clickOnSvg()} aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" role="img"
                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"
                      className="svg-inline--fa fa-times fa-w-11 fa-2x">
                     <path fill="currentColor"
@@ -42,14 +48,14 @@ function EditPopUp (props:propsType) {
                 </svg>
             </div>
             <div className={s.main}>
-                <p>Do you want to remove pack? br/ All cards will be excluded from this course.</p>
+                <p>Do you want to remove pack? All cards will be excluded from this course.</p>
             </div>
             <div className={s.footer}>
                 <button onClick={()=> changeButtonCancel()} className={activeButtonC ? s.clickButton : s.button}>Cancel</button>
-                <button onClick={()=> changeButtonSave()} className={activeButtonS ? s.clickButton : s.button}>Delete</button>
+                <button onClick={()=> changeButtonDel()} className={activeButtonS ? s.clickButton : s.button}>Delete</button>
             </div>
         </div>
     </div>
 }
 
-export default EditPopUp
+export default DeletePopUp

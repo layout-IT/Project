@@ -2,10 +2,12 @@ import React, {ChangeEvent, Dispatch, SetStateAction, useState} from "react";
 import s from './AddNewPackPopUp.module.scss'
 import {postcardPackTC} from "../../../redux/packs-reducer/packsReduser";
 import {useDispatch} from "react-redux";
-type propsType={
-    setAddpackPP:Dispatch<SetStateAction<boolean>>
+
+type propsType = {
+    setAddpackPP: Dispatch<SetStateAction<boolean>>
 }
-function AddNewPackPopUp (props:propsType) {
+
+function AddNewPackPopUp (props: propsType) {
     let [activeButtonC, setActiveButtonC] = useState(false)
     let [activeButtonS, setActiveButtonS] = useState(false)
     let [inputValue, setInputValue] = useState('')
@@ -13,11 +15,13 @@ function AddNewPackPopUp (props:propsType) {
     const inputChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.currentTarget.value)
     }
-
+    const clickOnSvg = () => {
+        props.setAddpackPP(false)
+    }
     const changeButtonCancel = () => {
         setActiveButtonC(true)
         props.setAddpackPP(false)
-        if(activeButtonS){
+        if (activeButtonS) {
             setActiveButtonS(false)
         }
     }
@@ -25,17 +29,18 @@ function AddNewPackPopUp (props:propsType) {
         setActiveButtonS(true)
         dispatch(postcardPackTC(inputValue))
         props.setAddpackPP(false)
-        if(activeButtonC){
+        if (activeButtonC) {
             setActiveButtonC(false)
         }
     }
 
-    return <div className={s.wrapper} >
-        <div className={s.some} onClick={()=>   props.setAddpackPP(false)}></div>
-        <div className={s.container} >
+    return <div className={s.wrapper}>
+        <div className={s.some} onClick={() => props.setAddpackPP(false)}></div>
+        <div className={s.container}>
             <div className={s.header}>
                 <div className={s.title}>Add new pack</div>
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" role="img"
+                <svg onClick={() => clickOnSvg()} aria-hidden="true" focusable="false" data-prefix="fas"
+                     data-icon="times" role="img"
                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"
                      className="svg-inline--fa fa-times fa-w-11 fa-2x">
                     <path fill="currentColor"
@@ -47,8 +52,11 @@ function AddNewPackPopUp (props:propsType) {
                 <input type="text" placeholder={'Name pack'} onChange={inputChangeValue}/>
             </div>
             <div className={s.footer}>
-                <button onClick={()=> changeButtonCancel()} className={activeButtonC ? s.clickButton : s.button}>Cancel</button>
-                <button onClick={()=> changeButtonSave()} className={activeButtonS ? s.clickButton : s.button}>Save</button>
+                <button onClick={() => changeButtonCancel()}
+                        className={activeButtonC ? s.clickButton : s.button}>Cancel
+                </button>
+                <button onClick={() => changeButtonSave()} className={activeButtonS ? s.clickButton : s.button}>Save
+                </button>
             </div>
         </div>
     </div>
