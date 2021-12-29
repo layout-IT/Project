@@ -111,6 +111,10 @@ export const getAuthMeTC = () => (dispatch: Dispatch) => {
     dispatch(PreloaderStatus('loading'))
     return ApiLogin.AuthMe()
         .then((res) => {
+            dispatch(IsLoginAC(true))
+        })
+        .catch( (err) => {
+            dispatch(IsLoginAC(false))
         })
         .finally(() => {
             dispatch(PreloaderStatus('succeeded'))

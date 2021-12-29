@@ -96,6 +96,31 @@ h2 {
 
 }
 
+.inButContainer {
+  display: flex;
+  flex: 0 1 70%;
+}
+
+.searchButton {
+  border: 1px solid #B0ADBF;
+  border-radius: 2px;
+  flex: 0 1 10%;
+  box-shadow: 2px 2px 2px #3f3f40;
+  transition: all 0.3s ease;
+  margin-left: 5px;
+
+  &:hover {
+    position: relative;
+    box-shadow: 4px 4px 4px #3f3f40;
+  }
+
+  &:active {
+    transition: all 0.1s ease;
+    box-shadow: 2px 2px 2px #3f3f40;
+    top: 2px;
+  }
+}
+
 .inputFieldContainer {
   flex: 0 1 70%;
   border: 1px solid #B0ADBF;

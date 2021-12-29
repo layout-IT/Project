@@ -12,11 +12,11 @@ export const ButtonMinMax = React.memo(function (props: PropsType) {
     const dispatch = useDispatch()
     const SortUpPlusName = (name:string) => {
         dispatch(SortPacksAC('0' + name))
-        dispatch(getCardPacksTC(sortPacks))
+        dispatch(getCardPacksTC(sortPacks,''))
     }
     const sortDownPlusName = (name:string) => {
         dispatch(SortPacksAC('1' + name))
-        dispatch(getCardPacksTC(sortPacks))
+        dispatch(getCardPacksTC(sortPacks,''))
     }
     const sortPacks = useSelector<RootState, string>(state => state.packs.sortPacks)
     return <div className={s.wrapper}>

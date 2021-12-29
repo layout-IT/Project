@@ -13,21 +13,12 @@ function Profile() {
     let status = useSelector<RootState, string>(state => state.login.status)
     let IsLogin = useSelector<RootState, boolean>(state => state.login.isLogin)
     const navigate = useNavigate()
-    useEffect(() => {
-        dispatch(getAuthMeTC())
-    }, [])
     const LogOut = () => {
         dispatch(LogOutTC())
     }
     const navlinkGotoPacks =  () =>{
         navigate('/packs')
     }
-    if (!IsLogin) {
-        dispatch(getAuthMeTC())
-        return <Navigate to='/login'/>
-    }
-
-
     return <>
         {status === "loading" ? <Preloader/>
             : <div className={s.wrapper}>

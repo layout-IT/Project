@@ -1,7 +1,6 @@
 import {Dispatch} from "redux";
-import {store} from "../store";
-import {ApiPacks, cardsPaksType, cardsPaksParametrsType} from "../../api/apiPacks";
-import {PreloaderStatus} from "../login-reducer/login-reducer";
+import {ApiPacks, cardsPaksType} from "../../api/apiPacks";
+import {IsLoginAC, PreloaderStatus} from "../login-reducer/login-reducer";
 
 export type initialStateType = typeof initialState
 //export type packsReducerType = initialStateType & cardsPaksType
@@ -12,7 +11,8 @@ const initialState = {
     valueFromThePacksButton: '',
     valueFromThePacksOption: '',
     sortPacks: '',
-    cardpacks: [] as cardsPaksType[]
+    cardpacks: [] as cardsPaksType[],
+    deletePackId: '',
 }
 
 export const packsReducer = (state: initialStateType = initialState, action: ActionTypes): initialStateType => {
@@ -27,6 +27,8 @@ export const packsReducer = (state: initialStateType = initialState, action: Act
             return {...state, sortPacks: action.zeroOrOneAndcellName}
         case "CARDS-PACKS":
             return {...state, ...action.payload}
+        case 'GET-DELETE-PACK-ID':
+            return {...state, deletePackId: action.deletePackId}
         default:
             return state
     }
@@ -57,7 +59,7 @@ export const SortPacksAC = (zeroOrOneAndcellName: string) => {
         zeroOrOneAndcellName
     } as const
 }
-export const getCardPacksAC = (cardpacks: cardsPaksType[]) => {
+export const GetCardPacksAC = (cardpacks: cardsPaksType[]) => {
     return {
         type: 'CARDS-PACKS',
         payload: {
@@ -65,12 +67,23 @@ export const getCardPacksAC = (cardpacks: cardsPaksType[]) => {
         }
     } as const
 }
+export const GetdeletePackIdAC = (deletePackId: string) => {
+    return {
+        type: 'GET-DELETE-PACK-ID',
+        deletePackId
 
-export const getCardPacksTC = (sortPacks: string) => (dispatch: Dispatch) => {
+    } as const
+}
+
+
+export const getCardPacksTC = (sortPacks: string, name: string) => (dispatch: Dispatch) => {
     dispatch(PreloaderStatus('loading'))
-    return ApiPacks.pack(sortPacks)
+    return ApiPacks.pack(sortPacks, name)
         .then((res) => {
-            dispatch(getCardPacksAC(res.data.cardPacks))
+            dispatch(GetCardPacksAC(res.data.cardPacks))
+        })
+        .catch(() => {
+            dispatch(IsLoginAC(false))
         })
         .finally(() => {
             dispatch(PreloaderStatus('succeeded'))
@@ -80,7 +93,7 @@ export const deletePackTC = (id: string) => (dispatch: Dispatch<any>) => {
     dispatch(PreloaderStatus('loading'))
     return ApiPacks.deletePack(id)
         .then((res) => {
-            console.log('delete')
+            dispatch(getCardPacksTC('', ''))
         })
         .finally(() => {
             dispatch(PreloaderStatus('succeeded'))
@@ -90,17 +103,18 @@ export const putPackTC = (_id: string, name: string) => (dispatch: Dispatch<any>
     dispatch(PreloaderStatus('loading'))
     return ApiPacks.putPack(_id, name)
         .then((res) => {
-            console.log('put')
+
         })
         .finally(() => {
             dispatch(PreloaderStatus('succeeded'))
         })
 }
 export const postcardPackTC = (name: string) => (dispatch: Dispatch<any>) => {
+
     dispatch(PreloaderStatus('loading'))
     return ApiPacks.postcardPack(name)
         .then((res) => {
-            console.log('post')
+            dispatch(getCardPacksTC('', ''))
         })
         .finally(() => {
             dispatch(PreloaderStatus('succeeded'))
@@ -113,4 +127,5 @@ type ActionTypes =
     | ReturnType<typeof SelectedValueOfTheButtonInPacksAC>
     | ReturnType<typeof SelectedValueOfTheOptionInPacksAC>
     | ReturnType<typeof SortPacksAC>
-    | ReturnType<typeof getCardPacksAC>
+    | ReturnType<typeof GetCardPacksAC>
+    | ReturnType<typeof GetdeletePackIdAC>

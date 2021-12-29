@@ -9,11 +9,12 @@ const instance = axios.create({
 })
 
 export const ApiPacks = {
-    pack(sortPacks: string) {
+    pack(sortPacks: string,packName:string) {
         return instance.get<cardsPaksParametrsType>('cards/pack', {
                 params: {
                     pageCount: 10,
                     sortPacks,
+                    packName,
                 }
             }
         )

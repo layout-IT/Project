@@ -3,26 +3,31 @@ import React, {ChangeEvent, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
 import {
-    getCardPacksTC, postcardPackTC,
+    getCardPacksTC,
+    postcardPackTC,
     SelectedValueOfTheButtonInPacksAC,
-    SelectedValueOfTheOptionInPacksAC,
-    ValueFromThePacksInputAC
+    SelectedValueOfTheOptionInPacksAC
 } from "../../../redux/packs-reducer/packsReduser";
 import Table from "../../features/Table/Table";
-import {getAuthMeTC} from "../../../redux/login-reducer/login-reducer";
 import Preloader from "../../features/preloader/Preloader";
 import DoubleSlider from "../../features/doubleSlider/DoubleSlider";
+import {Navigate, useNavigate} from "react-router-dom";
+import AddNewPackPopUp from "../../features/addNewPackPopUp/AddNewPackPopUp";
 
-function Packs() {
+function Packs () {
     let [inputValue, setInputValue] = useState('')
+    let [addpackPP, setAddpackPP] = useState(false)
     const sortPacks = useSelector<RootState, string>(state => state.packs.sortPacks)
     const status = useSelector<RootState, string>(state => state.login.status)
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const inputChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.currentTarget.value)
     }
+    const IsLogin = useSelector<RootState, boolean>(state => state.login.isLogin)
     const AddNewPack = () => {
-        dispatch(postcardPackTC(inputValue))
+        setAddpackPP(true)
+
     }
     const SelectedValueOfTheSelect = (e: string) => {
         dispatch(SelectedValueOfTheButtonInPacksAC(e))
@@ -32,11 +37,18 @@ function Packs() {
     }
     const valueFromInput = useSelector<RootState, string>(state => state.packs.valueFromThePacksInput)
     const valueFromButton = useSelector<RootState, string>(state => state.packs.valueFromThePacksButton)
-
+    const Search = () => {
+        dispatch(getCardPacksTC(sortPacks, inputValue))
+        setTimeout(() => {
+            setInputValue('')
+        }, 100)
+    }
     useEffect(() => {
-        dispatch(getAuthMeTC())
-        dispatch(getCardPacksTC(sortPacks))
+        dispatch(getCardPacksTC(sortPacks, ''))
     }, [])
+    if (!IsLogin) {
+        return <Navigate to={"/login"}/>
+    }
     return <>
         {status === "loading" ? <Preloader/>
             : <div className={s.wrapper}>
@@ -59,14 +71,20 @@ function Packs() {
                     <div className={s.mainField}>
                         <div className={s.mainFieldContainer}>
                             <h2>Packs list</h2>
+                            {addpackPP && <AddNewPackPopUp setAddpackPP={setAddpackPP}/>}
                             <div className={s.searchBar}>
-                                <div className={s.inputFieldContainer}><input onChange={inputChangeValue}
-                                                                              placeholder="Search..."
-                                                                              className={s.inputField}
-                                                                              type="text"/></div>
+                                <div className={s.inButContainer}>
+                                    <div className={s.inputFieldContainer}><input value={inputValue}
+                                                                                  onChange={inputChangeValue}
+                                                                                  placeholder="Search..."
+                                                                                  className={s.inputField}
+                                                                                  type="text"/></div>
+                                    <button onClick={() => Search()} className={s.searchButton}>Search</button>
+                                </div>
                                 <button onClick={() => AddNewPack()} className={s.searchButton}> Add new pack</button>
                             </div>
-                            <Table/>
+                            {status === "loading" ? <Preloader/> :
+                                <Table/>}
                             <div className={s.pagination}>
                                 <svg aria-hidden="true" focusable="false" data-prefix="fas"
                                      data-icon="arrow-circle-right"

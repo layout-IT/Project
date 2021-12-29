@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import './App.scss';
-import {Routes, Route, Navigate} from 'react-router-dom';
+import {Navigate, Route, Routes, useNavigate} from 'react-router-dom';
 import Registration from "./pages/Registration/Registration";
 import NewPassword from "./pages/NewPassword/NewPassword";
 import Login from "./pages/Login/Login";
@@ -8,12 +8,12 @@ import ForgotYourPassword from "./pages/ForgotYourPassword/ForgotYourPassword";
 import NotFound from "./pages/404/404";
 import CheckEmail from "./pages/CheckEmail/CheckEmail";
 import Profile from "./pages/Profile/Profile";
-import {useSelector} from "react-redux";
-import {RootState} from "../redux/store";
-import {useNavigate} from 'react-router-dom'
+import {useDispatch, useSelector} from "react-redux";
 import PasswordChangeSsuccessful from "./features/PasswordChangeSuccessfil/PasswordChangeSsuccessful";
 import Packs from './pages/Packs/Packs';
 import Cards from './pages/Cards/Cards';
+import {getAuthMeTC} from "../redux/login-reducer/login-reducer";
+import {RootState} from "../redux/store";
 
 export const PATH = {
     PROFILE: '/',
@@ -29,7 +29,20 @@ export const PATH = {
     CARDS: '/cards',
 }
 
-function App() {
+function App () {
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const IsLogin = useSelector<RootState, boolean>(state => state.login.isLogin)
+    useEffect(() => {
+        if (!IsLogin) {
+            navigate("/login")
+        }
+            dispatch(getAuthMeTC())
+
+
+    }, [])
+
     return (
         <div className="App">
             <Routes>

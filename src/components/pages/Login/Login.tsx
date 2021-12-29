@@ -39,12 +39,11 @@ export const Login = () => {
     const funOpenCloseEye = () => {
         !openCloseEye ? dispatch(OpenCloseEyeAC(true)) : dispatch(OpenCloseEyeAC(false))
     }
-    if (IsLogin) {
-        dispatch(getAuthMeTC())
-        return <Navigate to={"/"}/>
-    }
     const removeTheErrorFromTheLogin = () => {
         dispatch(ErrorLogin(false))
+    }
+    if (IsLogin){
+        return <Navigate to={'/'}/>
     }
 
     return <>
