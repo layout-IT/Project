@@ -6,7 +6,7 @@ import s from './Profile.module.scss'
 import {getAuthMeTC, LogOutTC, RequestStatusType} from "../../../redux/login-reducer/login-reducer";
 import Preloader from "../../features/preloader/Preloader";;
 
-function Profile() {
+export const Profile = React.memo( ()=>{
     const dispatch = useDispatch()
     const avatar = useSelector<RootState, string | undefined>(state => state.profile.avatar)
     const name = useSelector<RootState, string | undefined>(state => state.profile.name)
@@ -42,4 +42,4 @@ function Profile() {
         }
     </>
 }
-export default Profile
+)

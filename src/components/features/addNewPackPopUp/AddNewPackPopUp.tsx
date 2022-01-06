@@ -7,7 +7,7 @@ type propsType = {
     setAddpackPP: Dispatch<SetStateAction<boolean>>
 }
 
-function AddNewPackPopUp (props: propsType) {
+export const AddNewPackPopUp = React.memo( (props: propsType) => {
     let [activeButtonC, setActiveButtonC] = useState(false)
     let [activeButtonS, setActiveButtonS] = useState(false)
     let [inputValue, setInputValue] = useState('')
@@ -61,5 +61,4 @@ function AddNewPackPopUp (props: propsType) {
         </div>
     </div>
 }
-
-export default AddNewPackPopUp
+)

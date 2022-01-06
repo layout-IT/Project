@@ -6,7 +6,7 @@ import {postcardPackTC} from "../../redux/packs-reducer/packsReduser";
 type propsType={
     setAddpackPP:Dispatch<SetStateAction<boolean>>
 }
-function EditPopUp (props:propsType) {
+export const EditPopUp = React.memo( (props:propsType) =>{
     // let [activeButtonC, setActiveButtonC] = useState(false)
     // let [activeButtonS, setActiveButtonS] = useState(false)
     // let [inputValue, setInputValue] = useState('')
@@ -52,5 +52,4 @@ function EditPopUp (props:propsType) {
         {/*</div>*/}
     </div>
 }
-
-export default EditPopUp
+)

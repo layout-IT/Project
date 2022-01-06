@@ -1,19 +1,19 @@
 import React, {useEffect} from 'react';
 import './App.scss';
-import {Navigate, Route, Routes, useNavigate} from 'react-router-dom';
+import {Route, Routes, useNavigate} from 'react-router-dom';
 import Registration from "./pages/Registration/Registration";
 import NewPassword from "./pages/NewPassword/NewPassword";
-import Login from "./pages/Login/Login";
 import ForgotYourPassword from "./pages/ForgotYourPassword/ForgotYourPassword";
 import NotFound from "./pages/404/404";
 import CheckEmail from "./pages/CheckEmail/CheckEmail";
-import Profile from "./pages/Profile/Profile";
 import {useDispatch, useSelector} from "react-redux";
 import PasswordChangeSsuccessful from "./features/PasswordChangeSuccessfil/PasswordChangeSsuccessful";
-import Packs from './pages/Packs/Packs';
 import Cards from './pages/Cards/Cards';
 import {getAuthMeTC} from "../redux/login-reducer/login-reducer";
 import {RootState} from "../redux/store";
+import {Profile} from "./pages/Profile/Profile";
+import { Login } from './pages/Login/Login';
+import {Packs} from "./pages/Packs/Packs";
 
 export const PATH = {
     PROFILE: '/',

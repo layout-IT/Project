@@ -8,13 +8,13 @@ import {
     SelectedValueOfTheButtonInPacksAC,
     SelectedValueOfTheOptionInPacksAC
 } from "../../../redux/packs-reducer/packsReduser";
-import Table from "../../features/Table/Table";
 import Preloader from "../../features/preloader/Preloader";
 import DoubleSlider from "../../features/doubleSlider/DoubleSlider";
 import {Navigate, useNavigate} from "react-router-dom";
-import AddNewPackPopUp from "../../features/addNewPackPopUp/AddNewPackPopUp";
+import {AddNewPackPopUp} from "../../features/addNewPackPopUp/AddNewPackPopUp";
+import { Table } from '../../features/Table/Table';
 
-function Packs () {
+export const Packs = React.memo (()=> {
     let [inputValue, setInputValue] = useState('')
     let [addpackPP, setAddpackPP] = useState(false)
     const sortPacks = useSelector<RootState, string>(state => state.packs.sortPacks)
@@ -130,7 +130,6 @@ function Packs () {
         }
     </>
 }
-
-export default Packs
+)
 
 

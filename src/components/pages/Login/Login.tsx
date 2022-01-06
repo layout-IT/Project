@@ -13,7 +13,7 @@ import {NavLink} from "react-router-dom";
 import Preloader from "../../features/preloader/Preloader";
 import OpenCloseEye from "../../features/OpenEye/OpenCloseEye";
 
-export const Login = () => {
+export const Login = React.memo( () => {
     const dispatch = useDispatch()
     const status = useSelector<RootState, string>(state => state.login.status)
     const IsLogin = useSelector<RootState, boolean>(state => state.login.isLogin)
@@ -91,5 +91,4 @@ export const Login = () => {
 
     </>
 }
-
-export default Login
+)

@@ -7,7 +7,7 @@ type propsType={
     setDelete:Dispatch<SetStateAction<boolean>>
     deletingById: string
 }
-function DeletePopUp (props:propsType) {
+export const DeletePopUp = React.memo( (props:propsType) => {
     let [activeButtonC, setActiveButtonC] = useState(false)
     let [activeButtonS, setActiveButtonS] = useState(false)
     let [inputValue, setInputValue] = useState('')
@@ -57,5 +57,4 @@ function DeletePopUp (props:propsType) {
         </div>
     </div>
 }
-
-export default DeletePopUp
+)
