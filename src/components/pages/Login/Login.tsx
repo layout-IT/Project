@@ -43,7 +43,7 @@ export const Login = React.memo( () => {
         dispatch(ErrorLogin(false))
     }
     if (IsLogin){
-        return <Navigate to={'/'}/>
+        return <Navigate to={'/packs'}/>
     }
 
     return <>

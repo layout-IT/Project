@@ -1,15 +1,28 @@
-.wrapper{
+.wrapper {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 30px;
+  border: 1px solid #2e70c2;
+  padding: 10px;
+  overflow: hidden;
 }
+
 .imgAvatar {
-  width: 200px;
-  height: 200px;
+  max-width: 200px;
+  max-height: 200px;
+  width: 100%;
+  height: 100%;
   margin-bottom: 20px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .buttonGoToPacks {
@@ -28,16 +41,16 @@
 
 }
 
-.gotoPacksText {
-  margin-right: 10px;
-}
-
 .userName {
   margin-bottom: 20px;
 }
 
 .avatar {
   margin-bottom: 20px;
+  max-width: 200px;
+  width: 100%;
+  padding: 0 10px;
+  overflow: hidden;
 }
 
 .buttonLogOut {
@@ -52,11 +65,11 @@
   display: block;
 
   &:hover {
-    box-shadow: 2px 2px 2px 2px #3c3f99;
+    box-shadow: 2px 2px 2px 2px #8082bb;
   }
 
   &:active {
-    box-shadow: 1px 1px 1px 1px #3c3f99;
+    box-shadow: 1px 1px 1px 1px #8082bb;
   }
 
   @media (max-width: 900px) {

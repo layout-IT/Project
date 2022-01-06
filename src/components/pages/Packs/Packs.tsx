@@ -13,6 +13,7 @@ import DoubleSlider from "../../features/doubleSlider/DoubleSlider";
 import {Navigate, useNavigate} from "react-router-dom";
 import {AddNewPackPopUp} from "../../features/addNewPackPopUp/AddNewPackPopUp";
 import { Table } from '../../features/Table/Table';
+import {Profile} from "../Profile/Profile";
 
 export const Packs = React.memo (()=> {
     let [inputValue, setInputValue] = useState('')
@@ -56,12 +57,14 @@ export const Packs = React.memo (()=> {
                     <div className={s.sidebar}>
                         <div className={s.sidebarContainer}>
                             <div className={s.top}>
+                                <Profile/>
                                 <h3>Show packs cards</h3>
                                 <div className={s.bottonContainer}>
                                     <button>My</button>
                                     <button>All</button>
                                 </div>
                             </div>
+
                             <div className={s.bottom}>
                                 <h3>Number of cards</h3>
                                 <DoubleSlider/>

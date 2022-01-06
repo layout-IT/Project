@@ -16,7 +16,7 @@ import { Login } from './pages/Login/Login';
 import {Packs} from "./pages/Packs/Packs";
 
 export const PATH = {
-    PROFILE: '/',
+   // PROFILE: '/',
     REGISTRATION: '/registration',
     TEST: '/test',
     NEW_PASSWORD: '/new-password/:token',
@@ -46,7 +46,7 @@ function App () {
     return (
         <div className="App">
             <Routes>
-                <Route path={PATH.PROFILE} element={<Profile/>}/>
+                {/*<Route path={PATH.PROFILE} element={<Profile/>}/>*/}
                 <Route path={PATH.LOGIN} element={<Login/>}/>
                 <Route path={PATH.REGISTRATION} element={<Registration/>}/>
                 <Route path={PATH.NEW_PASSWORD} element={<NewPassword/>}/>
