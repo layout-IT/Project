@@ -1,11 +1,11 @@
 import s from "./Table.module.scss";
-import {ButtonMinMax} from "../Button-min-max/ButtonMinMax";
+import {ButtonMinMax} from "../../../features/Button-min-max/ButtonMinMax";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../../redux/store";
-import {cardsPaksType} from "../../../api/apiPacks";
-import {deletePackTC, putPackTC} from "../../../redux/packs-reducer/packsReduser";
-import {DeletePopUp} from "../../deletePopUp/DeletePopUp";
+import {RootState} from "../../../../redux/store";
+import {cardsPaksType} from "../../../../api/apiPacks";
+import {deletePackTC, putPackTC} from "../../../../redux/packs-reducer/packsReduser";
+import {DeletePopUp} from "../../../deletePopUp/DeletePopUp";
 
 export const Table = React.memo(() => {
         const dispatch = useDispatch()

@@ -1,35 +1,21 @@
 import s from "./Cards.module.scss";
 import React from "react";
 import {ButtonMinMax} from "../../features/Button-min-max/ButtonMinMax";
+import {Table} from "./Table/Table";
+import {Navigate, NavLink} from "react-router-dom";
 
-function Cards() {
+function Cards () {
+
     return <div className={s.wrapper}>
         <div className={s.container}>
             <div className={s.mainField}>
                 <div className={s.mainFieldContainer}>
-                    <h2><span></span>Packs Name</h2>
+                    <h2> <NavLink to='/packs'><span></span></NavLink> Packs Name</h2>
                     <div className={s.searchBar}>
                         <div className={s.inputFieldContainer}><input placeholder="Search..." className={s.inputField}
                                                                       type="text"/></div>
                     </div>
-                    <table className={s.tableStyle}>
-                        <thead className={s.header}>
-                        <tr>
-                            <th align="left"><span>Question</span> </th>
-                            <th align="left"><span>Answer</span></th>
-                            <th align="left"><span className={s.thSpan}><ButtonMinMax name={'Last Updated'}/></span></th>
-                            <th align="left"><span>Grade</span></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>How "This" works in JavaScript</td>
-                            <td>This is how "This" works in JavaScript</td>
-                            <td>18.03.2021</td>
-                            <td><span className={s.grades}></span></td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <Table/>
                     <div className={s.pagination}>
                         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-circle-right"
                              role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"

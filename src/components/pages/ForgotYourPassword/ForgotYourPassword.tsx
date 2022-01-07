@@ -1,8 +1,8 @@
-import React, {ChangeEvent, useEffect, useState} from "react";
+import React, {ChangeEvent, useState} from "react";
 import s from './ForgotYourPassword.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../../redux/store";
-import {IsLoginAC, RequestStatusType} from "../../../redux/login-reducer/login-reducer";
+import {IsLoginAC} from "../../../redux/login-reducer/login-reducer";
 import {FordotPasswordTC} from "../../../redux/forgot-your-password-reducer/forgot-your-password-reducer";
 import {NavLink, useNavigate} from "react-router-dom";
 import Preloader from "../../features/preloader/Preloader";
