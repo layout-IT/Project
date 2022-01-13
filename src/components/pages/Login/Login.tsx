@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useState} from "react";
 import s from './Login.module.scss'
 import {useDispatch, useSelector} from "react-redux";
-import {ErrorLogin, LoginTC, OpenCloseEyeAC} from "../../../redux/login-reducer/login-reducer";
+import {ErrorLogin, getAuthMeTC, LoginTC, OpenCloseEyeAC} from "../../../redux/login-reducer/login-reducer";
 import {Navigate, NavLink, useNavigate} from "react-router-dom";
 import {RootState} from "../../../redux/store";
 import Preloader from "../../features/preloader/Preloader";
@@ -37,6 +37,7 @@ export const Login = React.memo(() => {
             dispatch(ErrorLogin(false))
         }
         if (IsLogin) {
+            dispatch(getAuthMeTC())
             return <Navigate to={'/packs'}/>
         }
 
