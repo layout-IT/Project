@@ -3,13 +3,12 @@ import s from './Registration.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {
     ErrorEmailAlreadyExistAC,
-    LoginRegistrationAC,
     LogRegistrationTC,
-    RegistrationConfirmPassworsError, RegistrationLengthPasswordErrorAC
+    RegistrationConfirmPassworsError,
+    RegistrationLengthPasswordErrorAC
 } from "../../../redux/registration-reducer/registration-reducer";
 import {RootState} from "../../../redux/store";
-import {OpenCloseEyeAC, RequestStatusType} from "../../../redux/login-reducer/login-reducer";
-import {Navigate, NavLink, useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import OpenCloseEye from "../../features/OpenEye/OpenCloseEye";
 import Preloader from "../../features/preloader/Preloader";
 

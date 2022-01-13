@@ -1,5 +1,4 @@
-import axios, {AxiosResponse} from 'axios'
-import {stringify} from "querystring";
+import axios from 'axios'
 
 const instance = axios.create({
     baseURL: "https://neko-back.herokuapp.com/2.0",
@@ -23,7 +22,6 @@ export const ApiPacks = {
         return instance.delete(`cards/pack?id=${id}`)
     },
     putPack (_id: string, name: string) {
-        debugger
         return instance.put<putcardPackType>(`cards/pack`, {
                 cardsPack: {
                     name,

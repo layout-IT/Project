@@ -1,15 +1,17 @@
-import React, {ChangeEvent, KeyboardEventHandler, useState} from "react"
+import React, {ChangeEvent, useState} from "react"
 import {cardsPaksType} from "../../../api/apiPacks";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import s from "./Table/Table.module.scss";
 import {DeletePopUp} from "../../deletePopUp/DeletePopUp";
 import {putPackTC} from "../../../redux/packs-reducer/packsReduser";
+import {RootState} from "../../../redux/store";
 
 type packType = {
     cardpacks: cardsPaksType
 }
 export const Pack = React.memo((props: packType) => {
         const dispatch = useDispatch()
+        const user_id = useSelector<RootState, string>(state => state.login.user_id)
         const [deletePP, setDelete] = useState(false)
         const [deletingById, setDeletingById] = useState('')
         const [userId, setUserID] = useState<null | string>(null)
@@ -23,7 +25,6 @@ export const Pack = React.memo((props: packType) => {
         }
         const onChangeInputHandler = (e: ChangeEvent<HTMLInputElement>) => {
             setValueInput(e.currentTarget.value)
-            debugger
         }
 
         const ListeneronBlur = () => {
@@ -48,8 +49,14 @@ export const Pack = React.memo((props: packType) => {
                 <td>{props.cardpacks.updated}</td>
                 <td>I{props.cardpacks.grade}</td>
                 <td className={s.buttonsCell}>
-                    <button onClick={() => deletePackClick(props.cardpacks._id)} className={s.cellDel}>Delete</button>
-                    <button onClick={() => putPackClick(props.cardpacks._id)} className={s.cellCommon}>Edit</button>
+                    {user_id === props.cardpacks.user_id ? <>
+                            <button onClick={() => deletePackClick(props.cardpacks._id)} className={s.cellDel}>Delete</button>
+                            <button onClick={() => putPackClick(props.cardpacks._id)}
+                                    className={s.cellCommon}>Edit
+                            </button>
+                        </>
+                        : 'none'
+                    }
                     {/*<button className={s.cellCommon}>Learn</button>*/}
                 </td>
             </tr>

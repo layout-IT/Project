@@ -11,12 +11,11 @@ import PasswordChangeSsuccessful from "./features/PasswordChangeSuccessfil/Passw
 import Cards from './pages/Cards/Cards';
 import {getAuthMeTC} from "../redux/login-reducer/login-reducer";
 import {RootState} from "../redux/store";
-import {Profile} from "./pages/Profile/Profile";
-import { Login } from './pages/Login/Login';
+import {Login} from './pages/Login/Login';
 import {Packs} from "./pages/Packs/Packs";
 
 export const PATH = {
-   // PROFILE: '/',
+    // PROFILE: '/',
     REGISTRATION: '/registration',
     TEST: '/test',
     NEW_PASSWORD: '/new-password/:token',
@@ -38,7 +37,7 @@ function App () {
         if (!IsLogin) {
             navigate("/login")
         }
-            dispatch(getAuthMeTC())
+        dispatch(getAuthMeTC())
 
 
     }, [])

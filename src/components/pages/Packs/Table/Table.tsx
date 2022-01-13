@@ -1,10 +1,9 @@
 import s from "./Table.module.scss";
 import {ButtonMinMax} from "../../../features/Button-min-max/ButtonMinMax";
-import React, {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React from "react";
+import {useSelector} from "react-redux";
 import {RootState} from "../../../../redux/store";
 import {cardsPaksType} from "../../../../api/apiPacks";
-import {DeletePopUp} from "../../../deletePopUp/DeletePopUp";
 import {Pack} from "../Pack";
 
 export const Table = React.memo(() => {

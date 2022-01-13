@@ -7,6 +7,7 @@ type ActionTypes =
     | ReturnType<typeof PreloaderStatus>
     | ReturnType<typeof ErrorLogin>
     | ReturnType<typeof ErrorTextFromResponse>
+    | ReturnType<typeof IdUSERAC>
 
 export type RequestStatusType = 'loading' | 'succeeded'
 
@@ -18,6 +19,7 @@ const initialState = {
     status: 'succeeded',
     errorLogin: false,
     errorTextFromResponse: '',
+    user_id: '',
 }
 
 export const loginReducer = (state: initialStateType = initialState, action: ActionTypes): initialStateType => {
@@ -32,6 +34,8 @@ export const loginReducer = (state: initialStateType = initialState, action: Act
             return {...state, errorLogin: action.errorLogin}
         case 'ERROR-Text-FROM-RESPONSE':
             return {...state, errorTextFromResponse: action.errorTextFromResponse}
+        case "ID-USER":
+            return {...state, user_id: action._id}
         default:
             return state
     }
@@ -78,6 +82,12 @@ export const ErrorTextFromResponse = (errorTextFromResponse: string) => {
         errorTextFromResponse
     } as const
 }
+export const IdUSERAC = (_id: string) => {
+    return {
+        type: 'ID-USER',
+        _id
+    } as const
+}
 
 export const LoginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
     dispatch(PreloaderStatus('loading'))
@@ -112,8 +122,9 @@ export const getAuthMeTC = () => (dispatch: Dispatch) => {
     return ApiLogin.AuthMe()
         .then((res) => {
             dispatch(IsLoginAC(true))
+            dispatch(IdUSERAC(res.data._id))
         })
-        .catch( (err) => {
+        .catch((err) => {
             dispatch(IsLoginAC(false))
         })
         .finally(() => {
