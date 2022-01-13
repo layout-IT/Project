@@ -103,7 +103,7 @@ export const putPackTC = (_id: string, name: string) => (dispatch: Dispatch<any>
     dispatch(PreloaderStatus('loading'))
     return ApiPacks.putPack(_id, name)
         .then((res) => {
-
+            dispatch(getCardPacksTC('', ''))
         })
         .finally(() => {
             dispatch(PreloaderStatus('succeeded'))

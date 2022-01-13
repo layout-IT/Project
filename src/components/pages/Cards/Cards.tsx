@@ -1,8 +1,7 @@
 import s from "./Cards.module.scss";
 import React from "react";
-import {ButtonMinMax} from "../../features/Button-min-max/ButtonMinMax";
 import {Table} from "./Table/Table";
-import {Navigate, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 function Cards () {
 
@@ -10,7 +9,7 @@ function Cards () {
         <div className={s.container}>
             <div className={s.mainField}>
                 <div className={s.mainFieldContainer}>
-                    <h2> <NavLink to='/packs'><span></span></NavLink> Packs Name</h2>
+                    <h2><NavLink to='/packs'><span></span></NavLink> Packs Name</h2>
                     <div className={s.searchBar}>
                         <div className={s.inputFieldContainer}><input placeholder="Search..." className={s.inputField}
                                                                       type="text"/></div>
